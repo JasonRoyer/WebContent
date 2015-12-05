@@ -25,7 +25,15 @@
 		<h5>Below are a list of queries, click on which one you want to run.</h5>
 		<br />
 		<br />
-		<input type="button" id="button_query1" value="query 1" onClick="Update()"/>
+		<p align="center">
+		Query 1: i like potatos<br />
+		Query 2: i like potatos<br />
+		Query 3: i like potatos<br />
+		Query 4: i like potatos<br />
+		Query 5: i like potatos<br />
+		</p>
+		<br />
+		<input type="button" id="button_query1" value="query 1" onClick=""/>
 		<input type="button" id="button_query2" value="query 2" onClick=""/>
 		<input type="button" id="button_query3" value="query 3" onClick=""/>
 		<input type="button" id="button_query4" value="query 4" onClick=""/>

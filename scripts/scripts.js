@@ -7,3 +7,6 @@ function Update() {
 function Insert() {
 	window.location = "insert.jsp";
 }
+function Delete() {
+	window.location = "delete.jsp";
+}
