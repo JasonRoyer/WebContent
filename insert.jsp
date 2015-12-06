@@ -27,19 +27,57 @@
 		<br />
 		<form>
 		On Table: 
-		<select name="insertTableSelect">
+		<select name="insertTableSelect" id="selecttableID" onChange="tableSelect()">
 		
 		<option value="Office">Office</option>
 		<option value="Employee">Employee</option>
 		<option value="Client">Client</option>
-		<option value="Lession">Lession</option>
+		<option value="Lession">Lesson</option>
 		</select></form>
 		<br /><br />
-		Dynamicaly called table schema
-		<br/><br />
-		Form fields to fill in based on table schema
-		<h5>Inserting.......</h5>
+		<script>
+		function tableSelect() {
+			var e = document.getElementById("selecttableID");
+			var selectedText = e.options[e.selectedIndex].text;
+			var tableSchema;
+			switch (selectedText){
+			case "Office":
+				tableSchema = " Name | Adrress | Office ID | ManagerID | Phone# | City | State <br/>";
+				break;
+			
+			};
+			
+			document.getElementById("selectedTable").innerHTML = tableSchema;
+		}</script>
 		<br />
+		<div id="selectedTable">
+		<form action="index.html">
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Adrress</th>
+				<th>officeID</th>
+				<th>ManagerID</th>
+				<th>phone#</th>
+				<th>City</th>
+				<th>State</th>				
+			</tr>
+			<tr> 
+				<td><input type = "text" name="name"/> </td>
+				<td><input type = "text" name="Adrress"/> </td>
+				<td><input type = "text" name="officeID"/> </td>
+				<td><input type = "text" name="ManagerID"/> </td>
+				<td><input type = "text" name="phone#"/> </td>
+				<td><input type = "text" name="City"/> </td>
+				<td><input type = "text" name="State"/> </td>
+			
+			</tr>
+		
+		</table>
+		
+		</form>
+		
+		</div>
 		<br />
 		<input type="button" id="button_query1" value="Insert" onClick=""/>
 
