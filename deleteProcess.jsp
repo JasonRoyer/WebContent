@@ -5,6 +5,17 @@
 <head>
 	<title>Delete Results</title>
 </head>
+		<style>
+			* {
+				background-color: #505050;
+				color: #FFF;
+			}
+			body {
+				text-align: center;
+				font-family: "Courier", Ariel,sans-serif;
+			}
+			
+		</style>
 <body>
 <%
 
