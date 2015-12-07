@@ -22,10 +22,22 @@
 		<h2>CSc 460 Program 4 Delete</h2>
 		<a href="index.html">Home</a>		
 		<br />
-		<h5>Delete.......</h5>
+		<form action="deleteSelected.jsp">
+		On Table: 
+		<select name="insertTableSelect" onchange="this.form.submit()">
+		
+		<option value="Office">Office</option>
+		<option value="Employee">Employee</option>
+		<option value="Client">Client</option>
+		<option value="Lesson">Lesson</option>
+		<option value="Car">Car</option>
+		<option value="Interview">Interview</option>
+		<option value="Test">Test</option>
+		</select></form>
+		<br /><br />
+
 		<br />
-		<br />
-		<input type="button" id="button_query1" value="Delete" onClick=""/>
+
 
 	</body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page import="java.util.*, dbController.*" %>
+<%@ page import="java.util.*" %>
 <html>
 
 <body>
@@ -14,18 +14,19 @@ for ( String parameterName:requestParameterNames){
 	values.add(request.getParameter(parameterName));
 }
 
+out.write(values.toString());
 
-DatabaseController dbcontroller = new DatabaseController();
+//DatabaseController dbcontroller = new DatabaseController();
 
-dbcontroller.openConnection();
+//dbcontroller.openConnection();
 
-if(dbcontroller.insert(table,values)){
-	out.write("Inser Successful");
-}else {
-	out.write("Inser Failed");
-}
+//if(dbcontroller.insert(table,values)){
+//	out.write("Inser Successful");
+//}else {
+//	out.write("Inser Failed");
+//}
 
-dbcontroller.closeConnection();
+//dbcontroller.closeConnection();
 
 
 
