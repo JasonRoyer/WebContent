@@ -7,6 +7,7 @@
  *  course: csc460
  *	authors: Jorge Naranjo, Jason Royer, Brett Dunbar
  */
+package dbController
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
