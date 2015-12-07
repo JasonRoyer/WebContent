@@ -134,7 +134,7 @@ public class DatabaseControllerRedux {
 		try {
 			switch (tableName) {
 			case "test":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + testClientID + " "
 						+ testType + " " + testPassed + " " + testReason + " "
 						+ testDate + ") " + " values" + " ("
@@ -144,7 +144,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "client":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + clientID +  " "
 						+ clientName + " " + clientGender + " " + clientAddress + " "
 						+ clientCity + " " + clientPhone + " " + clientLicense + ") " + " values" + " ("
@@ -155,7 +155,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "interview":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + interviewClientID +  " "
 						+ interviewEmployeeID + " " + interviewDate + " " + interviewNeeds + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
@@ -164,7 +164,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "lesson":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + lessonNum +  " "
 						+ lessonCarID + " " + lessonClientID + " " + lessonEmployeeID + " "
 						+ lessonFee + " " + lessonDate + " " + lessonMilesDriven + ") " + " values" + " ("
@@ -175,7 +175,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "employee":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + employeeID +  " "
 						+ employeeName + " " + employeeDOB + " " + employeePhoneNum + " "
 						+ employeeGender + " " + employeeJobTitle + " " + employeeCarID + "," 
@@ -187,7 +187,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "car":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + carID +  " "
 						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
@@ -196,7 +196,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "office":
-				stmt = connect_.createStatement();
+				stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + officeID +  " "
 						+ officeName + " " + officeManagerID + " " + officePhoneNum + " "
 						+ officeAddress + " " + officeCity + ", " + officeState + ") " + " values" + " ("
