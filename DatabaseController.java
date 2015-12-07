@@ -48,7 +48,19 @@ public class DatabaseController {
 		while(!opened) {
 			try {
 				Class.forName("oracle.jdbc.OracleDriver");
-				conn = DriverManager.getConnection
+				conn = DriverManager.getConnection(connectString, username, password);
+				stmt = conn.createStatement();
+				opened = true;
+				return;
+			} catch (SQLException sqlE) {
+				sqlE.printStackTrace();
+				opened = false;
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				System.exit(1);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.exit(2);
 			}
 		} // end while
 	} // end openConnection()
