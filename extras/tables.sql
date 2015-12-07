@@ -5,7 +5,7 @@ create table test (
 	reason varchar2(200), 
 	testDate date NOT NULL,
 	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
-	PRIMARY KEY(clientID)
+	PRIMARY KEY(clientID, testType, testDate)
 );
 
 create table client (
