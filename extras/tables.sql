@@ -59,7 +59,7 @@ create table employee (
 
 create table car (
 	carID number NOT NULL,
-	milage number NOT NULL,
+	mileage number NOT NULL,
 	faults varchar2(1) check(faults in ('y', 'n')) NOT NULL,
 	empID number NOT NULL,
 	PRIMARY KEY(carID)
