@@ -34,6 +34,8 @@ public class DatabaseController {
 		connectString = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
 	} // end DatabaseController()
 
+
+	// try to open the db connection exit or return false if it fails
 	public void openConnection() {
 		boolean opened = false;
 		while(!opened) {
@@ -56,7 +58,9 @@ public class DatabaseController {
 		} // end while
 	} // end openConnection()
 
+	// simply close the db connection
 	public void closeConnection() {
+		// try to close connection, print exception
 		try {
 			stmt.close();
 			conn.close();
@@ -66,7 +70,26 @@ public class DatabaseController {
 		conn = null;
 	} // end closeConnetion()
 
+
+	/** update --	@param tablename - the name of the relation
+	 *				@param attr - list of the attribute info
+	 *	This method calls delete and then insert instead of actually
+	 *	updating the table directly.
+	 */
 	public boolean update(String tablename, ArrayList<String> attrs) {
-		delete(tablename, )
+		boolean returned = false;
+		returned = delete(tablename, attrs.get(0));
+		// if delete returned false, then return false
+		if (!returned) {
+			return returned;
+		}
+		returned = insert(tablename, attrs);
+		// if insert returned false, return false
+		if (!returned) {
+			return returned;
+		}
+		return true;
 	}
+
+
 } // end DatabaseController
