@@ -22,23 +22,23 @@ public class DatabaseControllerRedux {
   	/**
    	 * A handle to the connection to the DBMS.
    	 */
-  	protected Connection connection_;
+  	private Connection connection_;
   	/**
    	 * A handle to the statement.
    	 */
-  	protected Statement statement_;
+  	private Statement statement_;
   	/**
    	 * The connect string to specify the location of DBMS
    	 */
-  	protected String connect_string_ = null;
+  	private String connect_string_ = null;
   	/**
    	 * The password that is used to connect to the DBMS.
    	 */
-  	protected String password = null;
+  	private String password = null;
   	/**
    	 * The username that is used to connect to the DBMS.
    	*/
-  	protected String username = null;
+  	private String username = null;
 
   	private final String testClientID = "\"clientID\"",
 			testType = "\"testType\"",
@@ -238,8 +238,8 @@ public class DatabaseControllerRedux {
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
  		String query = "SELECT * FROM bidunbar." + tablename;
  		try {
- 			ResultSet rs = stmt.executeQuery(query);
- 			ArrayList<ArrayList> tupleList = new ArrayList<ArrayList>();
+ 			ResultSet rs = statement_.executeQuery(query);
+ 			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
  			while(rs.next()) {
  				ArrayList<String> tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
