@@ -24,7 +24,6 @@ create table inteview (
 	clientID number  NOT NULL,
 	interviewDate date  NOT NULL,
 	needs varchar2(200)  NOT NULL,
-	validLicense varchar2(1) check(validLicense in ('y', 'n')) NOT NULL,
 	FOREIGN KEY(empID) REFERENCES bidunbar.employee(empID),
 	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
 	PRIMARY KEY(empID, clientID)

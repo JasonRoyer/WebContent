@@ -55,4 +55,14 @@ public class DatabaseController {
 			}
 		} // end while
 	} // end openConnection()
+
+	public void closeConnection() {
+		try {
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conn = null;
+	} // end closeConnetion()
 } // end DatabaseController
