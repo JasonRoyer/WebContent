@@ -19,17 +19,29 @@
 <body>
 <%
 
+
 ArrayList<String> requestParameterNames = Collections.list((Enumeration<String>)request.getParameterNames());
 ArrayList<String> values = new ArrayList<String>();
-
-String table = requestParameterNames.get(0).split("_")[1];
-
-
-for ( String parameterName:requestParameterNames){
-	values.add(request.getParameter(parameterName));
+String table ="";
+for (String str : requestParameterNames){
+	if (str.contains("_")){
+		table = str.split("_")[1];
+	}
 }
+String[] tempArray ={};
 
-out.write(values.toString());
+if (table.equals("Office")){tempArray = new String[]{"OfficeID_Office"};}
+if (table.equals("Employee")){tempArray = new String[]{"EmpID_Employee"};}
+if (table.equals("Client")){ tempArray = new String[]{"ClientID_Client"};}
+if (table.equals("Lesson")){ tempArray = new String[]{"LessonNum_Lesson"};}
+if (table.equals("Car")){tempArray = new String[]{"CarID_Car"};}
+if (table.equals("Interview")){ tempArray = new String[]{"ClientID_Interview"};}
+if (table.equals("Test")){ tempArray = new String[]{"ClientID_Test","TestType","TestDate"};}
+
+
+for(String str: tempArray){
+	values.add(request.getParameter(str));
+}
 
 //DatabaseController dbcontroller = new DatabaseController();
 
