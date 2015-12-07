@@ -1,11 +1,11 @@
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*, dbController.*" %>
 <html>
 
 <body>
 <%
 
-List<String> requestParameterNames = Collections.list((Enumeration<String>)request.getParameterNames());
-List<String> values = new ArrayList<String>();
+ArrayList<String> requestParameterNames = Collections.list((Enumeration<String>)request.getParameterNames());
+ArrayList<String> values = new ArrayList<String>();
 
 String table = requestParameterNames.get(0).split("_")[1];
 
@@ -17,11 +17,15 @@ for ( String parameterName:requestParameterNames){
 
 DatabaseController dbcontroller = new DatabaseController();
 
-dbcontroller.Open();
+dbcontroller.openConnection();
 
-out.write(dbcontroller.insert(table,values));
+if(dbcontroller.insert(table,values)){
+	out.write("Inser Successful");
+}else {
+	out.write("Inser Failed");
+}
 
-dbcontroller.Close();
+dbcontroller.closeConnection();
 
 
 
