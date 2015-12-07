@@ -215,4 +215,19 @@ public class DatabaseController {
 		return true;
  	}
 
+ 	public ArrayList<ArrayList<String>> findAll(String tablename) {
+ 		String query = "SELECT * FROM bidunbar." + tablename;
+ 		try {
+ 			ResultSet rs = stmt.executeQuery(query);
+ 			List<String> tupleList = new ArrayList<String>();
+ 			while(rs.next()) {
+ 				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
+ 				
+ 			} // end while
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		}
+ 		return null;
+ 	} // end findAll
+
 } // end DatabaseController
