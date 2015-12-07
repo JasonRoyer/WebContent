@@ -249,7 +249,7 @@ public class DatabaseControllerRedux {
 
  		if (tablename.equals("test")) {
  			// delete with compound key
- 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate"
+ 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate";
  		} else {
  			// delete with only asingle pk
  			switch (tablename) {
