@@ -1,6 +1,10 @@
-<%@ page import="java.util.*" %>
-<html>
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@page import="java.util.*" %>
+<html>
+<head>
+	<title>Insert Results</title>
+</head>
 <body>
 <%
 
@@ -25,6 +29,7 @@ out.write(values.toString());
 //}else {
 //	out.write("Inser Failed");
 //}
+
 
 //dbcontroller.closeConnection();
 
