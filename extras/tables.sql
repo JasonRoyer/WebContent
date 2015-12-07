@@ -26,7 +26,7 @@ create table inteview (
 	needs varchar2(200)  NOT NULL,
 	FOREIGN KEY(empID) REFERENCES bidunbar.employee(empID),
 	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
-	PRIMARY KEY(empID, clientID)
+	PRIMARY KEY(clientID)
 );
 
 create table lesson (

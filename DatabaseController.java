@@ -65,4 +65,8 @@ public class DatabaseController {
 		}
 		conn = null;
 	} // end closeConnetion()
+
+	public boolean update(String tablename, ArrayList<String> attrs) {
+		delete(tablename, )
+	}
 } // end DatabaseController
