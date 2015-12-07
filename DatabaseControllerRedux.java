@@ -220,20 +220,71 @@ public class DatabaseControllerRedux {
 	 *	This method calls delete and then insert instead of actually
 	 *	updating the table directly.
 	 */
- 	// public boolean update(String tablename, ArrayList<String> attrs) {
-		// boolean returned = false;
-		// returned = delete(tablename, attrs.get(0));
-		// // if delete returned false, then return false
-		// if (!returned) {
-		// 	return returned;
-		// }
-		// returned = insert(tablename, attrs);
-		// // if insert returned false, return false
-		// if (!returned) {
-		// 	return returned;
-		// }
-		// return true;
- 	// } // update
+ 	public boolean update(String tablename, ArrayList<String> attrs) {
+		boolean returned = false;
+		returned = delete(tablename, attrs.get(0));
+		// if delete returned false, then return false
+		if (!returned) {
+			return returned;
+		}
+		returned = insert(tablename, attrs);
+		// if insert returned false, return false
+		if (!returned) {
+			return returned;
+		}
+		return true;
+ 	} // update
+
+ 	/**
+ 	 *	delete - @param tablename - string that's passed in contains the name of the able to be deleted
+ 	 * 			 @param PKs - array of strings, typically one element, contains PK(s) to associate with the tuple to be deleted
+ 	 *	This method deletes the tuple from the relation passed in based on the PKs given along when it's called	
+ 	 */
+ 	public boolean delete(String tablename, String [] PKs) {
+ 		// check if tablename == "test" because is the only
+ 		// relation with a compound PK
+ 		String query = "DELETE FROM " + tablename + " WHERE ";
+ 		Statement stmt = null;
+		ResultSet answer = null;
+
+ 		if (tablename.equals("test")) {
+ 			// delete with compound key
+ 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate"
+ 		} else {
+ 			// delete with only asingle pk
+ 			switch (tablename) {
+ 				case "client":
+ 					query += PKs[0] + "= clientID";
+ 					break;
+ 				case "interview":
+ 					query += PKs[0] + "= clientID";
+ 					break;
+ 				case "lesson":
+ 					query += PKs[0] + "= lessonNum";
+ 					break;
+ 				case "employee":
+ 					query += PKs[0] + "= empID";
+ 					break;
+ 				case "car":
+ 					query += PKs[0] + "= carID";
+ 					break;
+ 				case "office":
+ 					query += PKs[0] + "= officeID";
+ 					break;				
+ 			} // switch
+ 		} // if/else
+
+ 		// attempt to run query
+ 		try {
+ 			stmt = connection_.createStatement();
+ 			answer = stmt.executeQuery(query);
+ 		} catch(SQLException e) {
+ 			e.printStackTrace();
+ 			return false;
+ 		}
+ 		return true;
+
+ 	} // delete
 
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
  		String query = "SELECT * FROM bidunbar." + tablename;

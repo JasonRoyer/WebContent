@@ -228,11 +228,46 @@ public class DatabaseController {
  	public boolean delete(String tablename, String [] PKs) {
  		// check if tablename == "test" because is the only
  		// relation with a compound PK
+ 		String query = "DELETE FROM " + tablename + " WHERE ";
+ 		Statement stmt = null;
+		ResultSet answer = null;
+
  		if (tablename.equals("test")) {
  			// delete with compound key
+ 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate"
  		} else {
  			// delete with only asingle pk
+ 			switch (tablename) {
+ 				case "client":
+ 					query += PKs[0] + "= clientID";
+ 					break;
+ 				case "interview":
+ 					query += PKs[0] + "= clientID";
+ 					break;
+ 				case "lesson":
+ 					query += PKs[0] + "= lessonNum";
+ 					break;
+ 				case "employee":
+ 					query += PKs[0] + "= empID";
+ 					break;
+ 				case "car":
+ 					query += PKs[0] + "= carID";
+ 					break;
+ 				case "office":
+ 					query += PKs[0] + "= officeID";
+ 					break;				
+ 			} // switch
+ 		} // if/else
+
+ 		// attempt to run query
+ 		try {
+ 			stmt = connection_.createStatement();
+ 			answer = stmt.executeQuery(query);
+ 		} catch(SQLException e) {
+ 			e.printStackTrace();
+ 			return false;
  		}
+ 		return true;
 
  	} // delete
 
@@ -242,6 +277,7 @@ public class DatabaseController {
  			ResultSet rs = stmt.executeQuery(query);
  			List<ArrayList> tupleList = new ArrayList<ArrayList>();
  			while(rs.next()) {
+
  				List<String> tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
  				switch(tablename) {
