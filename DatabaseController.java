@@ -101,43 +101,44 @@ public class DatabaseController {
 		String query = "";
 		Statement stmt = null;
 		ResultSet answer = null;
+
 		try {
 			switch (tableName) {
 			case "test":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + testClientID + " "
-						+ testType + " " + testPassed + " " + testReason + " "
+				query = "insert into " + tableName + " (" + testClientID + ", "
+						+ testType + ", " + testPassed + ", " + testReason + ", "
 						+ testDate + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + attributes.get(4) + ")";
+						+ Integer.parseInt(attributes.get(0)) + ", '"
+						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
+						+ attributes.get(3) + "', '" + attributes.get(4) + "')";
 				answer = stmt.executeQuery(query);
 				break;
 			case "client":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + clientID +  " "
-						+ clientName + " " + clientGender + " " + clientAddress + " "
-						+ clientCity + " " + clientPhone + " " + clientLicense + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
-						+ ", " + attributes.get(6) + ")";
+				query = "insert into " + tableName + " (" + clientID +  ", "
+						+ clientName + ", " + clientGender + ", " + clientAddress + ", "
+						+ clientCity + ", " + clientPhone + ", " + clientLicense + ") " + " values" + " ("
+						+ Integer.parseInt(attributes.get(0)) + ", '"
+						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
+						+ attributes.get(3) + "', '" + attributes.get(4) + "', " + Integer.parseInt(attributes.get(5)) 
+						+ ", '" + attributes.get(6) + "')";
 				answer = stmt.executeQuery(query);
 				break;
 			case "interview":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + interviewClientID +  " "
-						+ interviewEmployeeID + " " + interviewDate + " " + interviewNeeds + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + attributes.get(4) + ")";
+				query = "insert into " + tableName + " (" + interviewClientID +  ", "
+						+ interviewEmployeeID + ", " + interviewDate + ", " + interviewNeeds + " values" + " ("
+						+ Integer.parseInt(attributes.get(0)) + ", '"
+						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
+						+ attributes.get(3) + "', '" + attributes.get(4) + "')";
 				answer = stmt.executeQuery(query);
 				break;
 			case "lesson":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + lessonNum +  " "
-						+ lessonCarID + " " + lessonClientID + " " + lessonEmployeeID + " "
-						+ lessonFee + " " + lessonDate + " " + lessonMilesDriven + ") " + " values" + " ("
+				query = "insert into " + tableName + " (" + lessonNum +  ", "
+						+ lessonCarID + ", " + lessonClientID + ", " + lessonEmployeeID + ", "
+						+ lessonFee + ", " + lessonDate + ", " + lessonMilesDriven + ") " + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ Integer.parseInt(attributes.get(1)) + ", " + Integer.parseInt(attributes.get(2)) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ", " + Integer.parseInt(attributes.get(4)) + ", " + Integer.parseInt(attributes.get(5)) 
@@ -146,20 +147,20 @@ public class DatabaseController {
 				break;
 			case "employee":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + employeeID +  " "
-						+ employeeName + " " + employeeDOB + " " + employeePhoneNum + " "
-						+ employeeGender + " " + employeeJobTitle + " " + employeeCarID + "," 
+				query = "insert into " + tableName + " (" + employeeID +  ", "
+						+ employeeName + ", " + employeeDOB + ", " + employeePhoneNum + ", "
+						+ employeeGender + ", " + employeeJobTitle + ", " + employeeCarID + "," 
 						+ employeeOfficeID + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
+						+ Integer.parseInt(attributes.get(0)) + ", '"
+						+ attributes.get(1) + "', " + Integer.parseInt(attributes.get(2)) + ", "
+						+ Integer.parseInt(attributes.get(3)) + ", '" + attributes.get(4) + "', " + Integer.parseInt(attributes.get(5)) 
 						+ ", " + Integer.parseInt(attributes.get(6)) + Integer.parseInt(attributes.get(7)) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			case "car":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + carID +  " "
-						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
+				query = "insert into " + tableName + " (" + carID +  ", "
+						+ carMileage + ", " + carFaults + ", " + carEmpID + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ Integer.parseInt(attributes.get(1)) + ", " + attributes.get(2) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ")";
@@ -167,13 +168,13 @@ public class DatabaseController {
 				break;
 			case "office":
 				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + officeID +  " "
-						+ officeName + " " + officeManagerID + " " + officePhoneNum + " "
-						+ officeAddress + " " + officeCity + ", " + officeState + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + attributes.get(5) 
-						+ ", " + attributes.get(6) + ")";
+				query = "insert into " + tableName + " (" + officeID +  ", "
+						+ officeName + ", " + officeManagerID + ", " + officePhoneNum + ", "
+						+ officeAddress + ", " + officeCity + ", " + officeState + ") " + " values" + " ("
+						+ Integer.parseInt(attributes.get(0)) + ", '"
+						+ attributes.get(1) + "', " + Integer.parseInt(attributes.get(2)) + ", "
+						+ Integer.parseInt(attributes.get(3)) + ", '" + attributes.get(4) + "', '" + attributes.get(5) 
+						+ "', '" + attributes.get(6) + "')";
 				answer = stmt.executeQuery(query);
 				break;
 			}
@@ -184,7 +185,7 @@ public class DatabaseController {
 		}
 		return false;
 	} //insert
-
+	
 	public void closeConnection() {
 		try {
 			stmt.close();
@@ -214,5 +215,4 @@ public class DatabaseController {
 		}
 		return true;
  	}
-
 } // end DatabaseController
