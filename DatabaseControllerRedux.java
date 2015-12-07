@@ -134,7 +134,7 @@ public class DatabaseControllerRedux {
 		try {
 			switch (tableName) {
 			case "test":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + testClientID + " "
 						+ testType + " " + testPassed + " " + testReason + " "
 						+ testDate + ") " + " values" + " ("
@@ -144,7 +144,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "client":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + clientID +  " "
 						+ clientName + " " + clientGender + " " + clientAddress + " "
 						+ clientCity + " " + clientPhone + " " + clientLicense + ") " + " values" + " ("
@@ -155,7 +155,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "interview":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + interviewClientID +  " "
 						+ interviewEmployeeID + " " + interviewDate + " " + interviewNeeds + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
@@ -164,7 +164,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "lesson":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + lessonNum +  " "
 						+ lessonCarID + " " + lessonClientID + " " + lessonEmployeeID + " "
 						+ lessonFee + " " + lessonDate + " " + lessonMilesDriven + ") " + " values" + " ("
@@ -175,7 +175,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "employee":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + employeeID +  " "
 						+ employeeName + " " + employeeDOB + " " + employeePhoneNum + " "
 						+ employeeGender + " " + employeeJobTitle + " " + employeeCarID + "," 
@@ -187,7 +187,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "car":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + carID +  " "
 						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
@@ -196,7 +196,7 @@ public class DatabaseControllerRedux {
 				answer = stmt.executeQuery(query);
 				break;
 			case "office":
-				stmt = conn.createStatement();
+				stmt = connect_.createStatement();
 				query = "insert into " + tableName + " (" + officeID +  " "
 						+ officeName + " " + officeManagerID + " " + officePhoneNum + " "
 						+ officeAddress + " " + officeCity + ", " + officeState + ") " + " values" + " ("
@@ -239,9 +239,9 @@ public class DatabaseControllerRedux {
  		String query = "SELECT * FROM bidunbar." + tablename;
  		try {
  			ResultSet rs = stmt.executeQuery(query);
- 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
+ 			ArrayList<ArrayList> tupleList = new ArrayList<ArrayList>();
  			while(rs.next()) {
- 				List<String> tuple = new ArrayList<String>();
+ 				ArrayList<String> tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
  				switch(tablename) {
  					case "test":
@@ -301,7 +301,7 @@ public class DatabaseControllerRedux {
  						tuple.add(rs.getString("state"));
  						break;
  					default:
- 						System.err.println("uhh, what? look at findAll()")
+ 						System.err.println("uhh, what? look at findAll()");
  						break;
  				}// switch
  				tupleList.add(tuple);
