@@ -20,8 +20,8 @@ create table client (
 );
 
 create table inteview (
-	empID number  NOT NULL,
 	clientID number  NOT NULL,
+	empID number  NOT NULL,
 	interviewDate date  NOT NULL,
 	needs varchar2(200)  NOT NULL,
 	FOREIGN KEY(empID) REFERENCES bidunbar.employee(empID),
@@ -33,13 +33,13 @@ create table lesson (
 	lessonNum number NOT NULL,
 	carID number NOT NULL,
 	clientID number NOT NULL,
-	officeID number NOT NULL,
+	empID number NOT NULL,
 	fee number check(fee > 0) NOT NULL,
 	lessonDate date NOT NULL,
 	milesDriven number check(milesDriven > 0) NOT NULL,
 	FOREIGN KEY(carID) REFERENCES bidunbar.car(carID),
 	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
-	FOREIGN KEY(officeID) REFERENCES bidunbar.office(officeID),
+	FOREIGN KEY(empID) REFERENCES bidunbar.employee(empID),
 	PRIMARY KEY(lessonNum)
 );
 
@@ -59,7 +59,7 @@ create table employee (
 
 create table car (
 	carID number NOT NULL,
-	milage number NOT NULL,
+	mileage number NOT NULL,
 	faults varchar2(1) check(faults in ('y', 'n')) NOT NULL,
 	empID number NOT NULL,
 	PRIMARY KEY(carID)

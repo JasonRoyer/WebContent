@@ -7,6 +7,7 @@
  *  course: csc460
  *	authors: Jorge Naranjo, Jason Royer, Brett Dunbar
  */
+package dbController
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -25,6 +26,15 @@ public class DatabaseController {
 	protected Statement stmt;
 	protected String connectString = null;
 	protected String username = null, password = null;
+	
+	private final String testClientID = "clientID", testType = "testType", testPassed = "passed", testReason = "reason", testDate = "testDate",     // test
+                       	 clientID = "clientID", clientName = "name", clientGender = "gender", clientAddress = "address", clientCity = "city", clientPhone = "phoneNum", clientLicense = "valid license",  // client
+                         interviewEmployeeID = "empID",  interviewClientID = "clientID", interviewDate = "interviewDate", interviewNeeds = "needs",                   // interview
+                         lessonNum = "lessonNum", lessonCarID = "carID", lessonClientID = "clientID", lessonFee = "fee", lessonDate = "lessonDate", lessonMilesDriven = "milesDriven", // lesson
+                         employeeID = "empID", employeeName = "name", employeeDOB = "DOB", employeePhoneNum = "phoneNum", employeeGender = "gender", employeeJobTitle = "jobTitle", employeeCarID = "carID", employeeOfficeID = "officeID", // employee	
+                         carID = "carID", carMileage = "mileage", carFaults = "faults", carEmpID = "empID",  // car 
+                         officeID = "officeID", officeName = "officeName", officeManagerID = "managerID", officePhoneNum = "phoneNum", officeAddress = "address", officeCity = "city", officeState = "state";        //office				 
+                         						 
 
 	// contructor to get the connection going
 	public DatabaseController() {
@@ -40,7 +50,7 @@ public class DatabaseController {
 			try {
 				Class.forName("oracle.jdbc.OracleDriver");
 				conn = DriverManager.getConnection(connectString, username, password);
-				statement = conn.createStatement();
+				stmt = conn.createStatement();
 				opened = true;
 				return;
 			} catch (SQLException sqlE) {
@@ -55,18 +65,34 @@ public class DatabaseController {
 			}
 		} // end while
 	} // end openConnection()
-
-	public void closeConnection() {
-		try {
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		conn = null;
-	} // end closeConnetion()
-
-	public boolean update(String tablename, ArrayList<String> attrs) {
-		delete(tablename, )
+	
+	public boolean insert(String tableName, ArrayList<String> attributes) {
+		String query = "";
+		Statement stmt =  null;
+		ResultSet answer = null;
+		
+		switch (tableName) {
+			case "test":
+				query = "insert into " + tableName + " (" + 
+				break;
+			case "client":
+				insertValues("client", client);
+				break;
+			case "interview":
+				insertValues("interview", interview);
+				break;
+			case "lesson":
+				insertValues("lesson", lesson);
+				break;
+			case "employee":
+				insertValues("employee", employee);
+				break;
+			case "car":
+				insertValues("car", car);
+				break;
+			case "office":
+				insertValues("office", office);
+				break;
+		}	
 	}
 } // end DatabaseController

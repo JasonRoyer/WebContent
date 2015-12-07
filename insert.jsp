@@ -45,22 +45,22 @@
 			var form;
 			switch (selectedText){
 				case "Office":
-					form = createTableSelected("OfficeID_Office","Adrress","Name","ManagerID","phone#","City","State");
+					form = createTableSelected("OfficeID_Office","Name","ManagerID","phone#","Address","City","State");
 					break;
 				case "Employee":
-					form = createTableSelected("EmpID_Employee","Name","DOB","PhoneNum","Gender","JobTitle","CarID","OfficeID");
+					form = createTableSelected("EmpID_Employee","Name","DOB","Phone#","Gender","JobTitle","CarID","OfficeID");
 					break;
 				case "Client":
 					form = createTableSelected("ClientID_Client","Name","Gender","Address","City","PhoneNum","ValidLicense");
 					break;
 				case "Lesson":
-					form = createTableSelected("LessonNum_Lesson","CarID","ClientID","OfficeID","Fee","LessonDate","MilesDriven");
+					form = createTableSelected("LessonNum_Lesson","CarID","ClientID","EmployeeID","Fee","LessonDate","MilesDriven");
 					break;
 				case "Car":
 					form = createTableSelected("CarID_Car","Mileage","Faults","EmpID");
 					break;
 				case "Interview":
-					form = createTableSelected("EmpID_Interview","ClientID","InterviewDate","Needs");
+					form = createTableSelected("ClientID_Interview","EmpID","InterviewDate","Needs");
 					break;	
 				case "Test":
 					form = createTableSelected("ClientID_Test","TestType","Passed","Reason","TestDate");
