@@ -219,11 +219,74 @@ public class DatabaseController {
  		String query = "SELECT * FROM bidunbar." + tablename;
  		try {
  			ResultSet rs = stmt.executeQuery(query);
- 			List<String> tupleList = new ArrayList<String>();
+ 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
  			while(rs.next()) {
+ 				List<String> tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
- 				
+ 				switch(tablename) {
+ 					case "test":
+ 						tuple.add(rs.getString("clientID"));
+ 						tuple.add(rs.getString("testType"));
+ 						tuple.add(rs.getString("passed"));
+ 						tuple.add(rs.getString("reason"));
+ 						tuple.add(rs.getString("testDate"));
+ 						break;
+ 					case "client":
+ 						tuple.add(rs.getString("clientID"));
+ 						tuple.add(rs.getString("name"));
+ 						tuple.add(rs.getString("gender"));
+ 						tuple.add(rs.getString("address"));
+ 						tuple.add(rs.getString("city"));
+ 						tuple.add(rs.getString("phoneNum"));
+ 						tuple.add(rs.getString("validLicense"));
+ 						break;
+ 					case "interview":
+ 						tuple.add(rs.getString("clientID"));
+ 						tuple.add(rs.getString("empID"));
+ 						tuple.add(rs.getString("interviewDate"));
+ 						tuple.add(rs.getString("needs"));
+ 						break;
+ 					case "lesson":
+ 						tuple.add(rs.getString("lessonNum"));
+ 						tuple.add(rs.getString("carID"));
+ 						tuple.add(rs.getString("clientID"));
+ 						tuple.add(rs.getString("empID"));
+ 						tuple.add(rs.getString("fee"));
+ 						tuple.add(rs.getString("lessonDate"));
+ 						tuple.add(rs.getString("milesDriven"));
+ 						break;
+ 					case "employee":
+ 						tuple.add(rs.getString("empID"));
+ 						tuple.add(rs.getString("name"));
+ 						tuple.add(rs.getString("DOB"));
+ 						tuple.add(rs.getString("phoneNum"));
+ 						tuple.add(rs.getString("gender"));
+ 						tuple.add(rs.getString("jobTitle"));
+ 						tuple.add(rs.getString("carID"));
+ 						tuple.add(rs.getString("officeID"));
+ 						break;
+ 					case "car":
+ 						tuple.add(rs.getString("carID"));
+ 						tuple.add(rs.getString("mileage"));
+ 						tuple.add(rs.getString("faults"));
+ 						tuple.add(rs.getString("empID"));
+ 						break;
+ 					case "office":
+ 						tuple.add(rs.getString("officeID"));
+ 						tuple.add(rs.getString("officeName"));
+ 						tuple.add(rs.getString("managerID"));
+ 						tuple.add(rs.getString("phoneNum"));
+ 						tuple.add(rs.getString("address"));
+ 						tuple.add(rs.getString("city"));
+ 						tuple.add(rs.getString("state"));
+ 						break;
+ 					default:
+ 						System.err.println("uhh, what? look at findAll()")
+ 						break;
+ 				}// switch
+ 				tupleList.add(tuple);
  			} // end while
+ 			return tupleList;
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
