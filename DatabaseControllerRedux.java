@@ -220,20 +220,20 @@ public class DatabaseControllerRedux {
 	 *	This method calls delete and then insert instead of actually
 	 *	updating the table directly.
 	 */
- 	public boolean update(String tablename, ArrayList<String> attrs) {
-		boolean returned = false;
-		returned = delete(tablename, attrs.get(0));
-		// if delete returned false, then return false
-		if (!returned) {
-			return returned;
-		}
-		returned = insert(tablename, attrs);
-		// if insert returned false, return false
-		if (!returned) {
-			return returned;
-		}
-		return true;
- 	} // update
+ 	// public boolean update(String tablename, ArrayList<String> attrs) {
+		// boolean returned = false;
+		// returned = delete(tablename, attrs.get(0));
+		// // if delete returned false, then return false
+		// if (!returned) {
+		// 	return returned;
+		// }
+		// returned = insert(tablename, attrs);
+		// // if insert returned false, return false
+		// if (!returned) {
+		// 	return returned;
+		// }
+		// return true;
+ 	// } // update
 
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
  		String query = "SELECT * FROM bidunbar." + tablename;
