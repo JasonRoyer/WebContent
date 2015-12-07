@@ -178,6 +178,8 @@ public class DatabaseController {
 				answer = stmt.executeQuery(query);
 				break;
 			}
+			
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Unable to insert into database!");
