@@ -101,7 +101,6 @@ public class DatabaseController {
 		String query = "";
 		Statement stmt = null;
 		ResultSet answer = null;
-
 		try {
 			switch (tableName) {
 			case "test":
@@ -185,4 +184,35 @@ public class DatabaseController {
 		}
 		return false;
 	} //insert
+
+	public void closeConnection() {
+		try {
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conn = null;
+	} // end closeConnetion()
+
+	/** update --	@param tablename - the name of the relation
+	 *				@param attr - list of the attribute info
+	 *	This method calls delete and then insert instead of actually
+	 *	updating the table directly.
+	 */
+ 	public boolean update(String tablename, ArrayList<String> attrs) {
+		boolean returned = false;
+		returned = delete(tablename, attrs.get(0));
+		// if delete returned false, then return false
+		if (!returned) {
+			return returned;
+		}
+		returned = insert(tablename, attrs);
+		// if insert returned false, return false
+		if (!returned) {
+			return returned;
+		}
+		return true;
+ 	}
+
 } // end DatabaseController

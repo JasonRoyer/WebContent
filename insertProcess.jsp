@@ -1,6 +1,9 @@
-<%@ page import="java.util.*, dbController.*" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@page import="java.util.*,DatabaseController" %>
 <html>
-
+<head>
+	<title>Insert Results</title>
+</head>
 <body>
 <%
 
@@ -20,9 +23,9 @@ DatabaseController dbcontroller = new DatabaseController();
 dbcontroller.openConnection();
 
 if(dbcontroller.insert(table,values)){
-	out.write("Inser Successful");
+	out.write("Insert Successful");
 }else {
-	out.write("Inser Failed");
+	out.write("Insert Failed");
 }
 
 dbcontroller.closeConnection();
