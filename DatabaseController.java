@@ -34,5 +34,13 @@ public class DatabaseController {
 		connectString = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
 	} // end DatabaseController()
 
-	public openController 
+	public void openConnection() {
+		boolean opened = false;
+		while(!opened) {
+			try {
+				Class.forName("oracle.jdbc.OracleDriver");
+				conn = DriverManager.getConnection
+			}
+		} // end while
+	} // end openConnection()
 } // end DatabaseController
