@@ -25,6 +25,15 @@ public class DatabaseController {
 	protected Statement stmt;
 	protected String connectString = null;
 	protected String username = null, password = null;
+	
+	private final String testClientID = "clientID", testType = "testType", testPassed = "passed", testReason = "reason", testDate = "testDate",     // test
+                       	 clientID = "clientID", clientName = "name", clientGender = "gender", clientAddress = "address", clientCity = "city", clientPhone = "phoneNum", clientLicense = "valid license",  // client
+                         interviewEmployeeID = "empID",  interviewClientID = "clientID", interviewDate = "interviewDate", interviewNeeds = "needs",                   // interview
+                         lessonNum = "lessonNum", lessonCarID = "carID", lessonClientID = "clientID", lessonFee = "fee", lessonDate = "lessonDate", lessonMilesDriven = "milesDriven", // lesson
+                         employeeID = "empID", employeeName = "name", employeeDOB = "DOB", employeePhoneNum = "phoneNum", employeeGender = "gender", employeeJobTitle = "jobTitle", employeeCarID = "carID", employeeOfficeID = "officeID", // employee	
+                         carID = "carID", carMileage = "mileage", carFaults = "faults", carEmpID = "empID",  // car 
+                         officeID = "officeID", officeName = "officeName", officeManagerID = "managerID", officePhoneNum = "phoneNum", officeAddress = "address", officeCity = "city", officeState = "state";        //office				 
+                         						 
 
 	// contructor to get the connection going
 	public DatabaseController() {
@@ -34,62 +43,43 @@ public class DatabaseController {
 		connectString = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
 	} // end DatabaseController()
 
-
-	// try to open the db connection exit or return false if it fails
 	public void openConnection() {
 		boolean opened = false;
 		while(!opened) {
 			try {
 				Class.forName("oracle.jdbc.OracleDriver");
-				conn = DriverManager.getConnection(connectString, username, password);
-				statement = conn.createStatement();
-				opened = true;
-				return;
-			} catch (SQLException sqlE) {
-				sqlE.printStackTrace();
-				opened = false;
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				System.exit(1);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				System.exit(2);
+				conn = DriverManager.getConnection
 			}
 		} // end while
 	} // end openConnection()
-
-	// simply close the db connection
-	public void closeConnection() {
-		// try to close connection, print exception
-		try {
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		conn = null;
-	} // end closeConnetion()
-
-
-	/** update --	@param tablename - the name of the relation
-	 *				@param attr - list of the attribute info
-	 *	This method calls delete and then insert instead of actually
-	 *	updating the table directly.
-	 */
-	public boolean update(String tablename, ArrayList<String> attrs) {
-		boolean returned = false;
-		returned = delete(tablename, attrs.get(0));
-		// if delete returned false, then return false
-		if (!returned) {
-			return returned;
-		}
-		returned = insert(tablename, attrs);
-		// if insert returned false, return false
-		if (!returned) {
-			return returned;
-		}
-		return true;
+	
+	public boolean insert(String tableName, ArrayList<String> attributes) {
+		String query = "";
+		Statement stmt =  null;
+		ResultSet answer = null;
+		
+		switch (tableName) {
+			case "test":
+				query = "insert into " + tableName + " (" + 
+				break;
+			case "client":
+				insertValues("client", client);
+				break;
+			case "interview":
+				insertValues("interview", interview);
+				break;
+			case "lesson":
+				insertValues("lesson", lesson);
+				break;
+			case "employee":
+				insertValues("employee", employee);
+				break;
+			case "car":
+				insertValues("car", car);
+				break;
+			case "office":
+				insertValues("office", office);
+				break;
+		}	
 	}
-
-
 } // end DatabaseController
