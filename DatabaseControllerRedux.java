@@ -222,7 +222,17 @@ public class DatabaseControllerRedux {
 	 */
  	public boolean update(String tablename, ArrayList<String> attrs) {
 		boolean returned = false;
-		returned = delete(tablename, attrs.get(0));
+		// set array for the delete for tables with compound PKs,
+		// check if tablename == test
+		String [] attrsArray = new String[3];
+		if (tablename.equals("test")) {
+			attrsArray[0] = attrs.get(0);
+			attrsArray[1] = attrs.get(1);
+			attrsArray[2] = attrs.get(4);
+		} else{
+			attrsArray[0] = attrs.get(0);
+		}
+		returned = delete(tablename, attrsArray);
 		// if delete returned false, then return false
 		if (!returned) {
 			return returned;
