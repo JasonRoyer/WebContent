@@ -32,54 +32,63 @@
 		<option value="Office">Office</option>
 		<option value="Employee">Employee</option>
 		<option value="Client">Client</option>
-		<option value="Lession">Lesson</option>
+		<option value="Lesson">Lesson</option>
+		<option value="Car">Car</option>
+		<option value="Interview">Interview</option>
+		<option value="Test">Test</option>
 		</select></form>
 		<br /><br />
 		<script>
 		function tableSelect() {
 			var e = document.getElementById("selecttableID");
 			var selectedText = e.options[e.selectedIndex].text;
-			var tableSchema;
+			var form;
 			switch (selectedText){
-			case "Office":
-				tableSchema = " Name | Adrress | Office ID | ManagerID | Phone# | City | State <br/>";
-				break;
+				case "Office":
+					form = createTableSelected("OfficeID_Office","Adrress","Name","ManagerID","phone#","City","State");
+					break;
+				case "Employee":
+					form = createTableSelected("Name_Employee","DOB","EmpID","Title","CarID","Phone#","OfficeID","Gender");
+					break;
+				case "Client":
+					form = createTableSelected("Name_Client","Gender","Address","City","Phone#","ValidLicense","ClientID");
+					break;
+				case "Lesson":
+					form = createTableSelected("CarID_Lesson","ClientID","Fee","OfficeID","Lesson#","EmpID","MilesDriven");
+					break;
+				case "Car":
+					form = createTableSelected("OfficeID_Car","CarID","Mileage","Faults");
+					break;
+				case "Interview":
+					form = createTableSelected("EmpID_Interview","ClientID","Date","Needs","ValidLicense");
+					break;	
+				case "Test":
+					form = createTableSelected("ClientID_Test","TestType","Passed","Reason","Date");
+					break;	
 			
 			};
 			
-			document.getElementById("selectedTable").innerHTML = tableSchema;
-		}</script>
-		<br />
-		<div id="selectedTable">
-		<form action="index.html">
-		<table>
-			<tr>
-				<th>Name</th>
-				<th>Adrress</th>
-				<th>officeID</th>
-				<th>ManagerID</th>
-				<th>phone#</th>
-				<th>City</th>
-				<th>State</th>				
-			</tr>
-			<tr> 
-				<td><input type = "text" name="name"/> </td>
-				<td><input type = "text" name="Adrress"/> </td>
-				<td><input type = "text" name="officeID"/> </td>
-				<td><input type = "text" name="ManagerID"/> </td>
-				<td><input type = "text" name="phone#"/> </td>
-				<td><input type = "text" name="City"/> </td>
-				<td><input type = "text" name="State"/> </td>
+			document.getElementById("selectedTable").innerHTML = form;
+		}
+		function createTableSelected(){
+			var returnedString = "<form action=\"insertProcess.jsp\">"+"<table>"+"<tr>";
+			for (i=0; i < arguments.length; i++){
+				returnedString = returnedString + "<th>" + arguments[i].split("_")[0] + "</th>";
+			}
+			returnedString = returnedString + "</tr>"+"<tr>";
+			for (i=0; i < arguments.length; i++){
+				returnedString = returnedString + "<td><input type = \"text\" name=\""+ arguments[i] +"\"/> </td>";
+			}
+			returnedString = returnedString + "</tr> </table><input type =\"submit\" value=\"Insert\"></form>"
+			return returnedString;
 			
-			</tr>
+		}
+		</script>
+		<br />
+		<div id="selectedTable" align="center">
 		
-		</table>
-		
-		</form>
 		
 		</div>
-		<br />
-		<input type="button" id="button_query1" value="Insert" onClick=""/>
 
 	</body>
 </html>
