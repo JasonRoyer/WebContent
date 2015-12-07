@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<%@page import="java.util.*" %>
+<%@page import="java.util.*,dbController.*" %>
 <html>
 <head>
 	<title>Insert Results</title>
@@ -22,6 +22,7 @@
 ArrayList<String> requestParameterNames = Collections.list((Enumeration<String>)request.getParameterNames());
 ArrayList<String> values = new ArrayList<String>();
 
+// TODO this throws and out of bound exception sometimes
 String table = requestParameterNames.get(0).split("_")[1];
 
 
