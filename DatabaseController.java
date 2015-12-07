@@ -202,7 +202,17 @@ public class DatabaseController {
 	 */
  	public boolean update(String tablename, ArrayList<String> attrs) {
 		boolean returned = false;
-		returned = delete(tablename, attrs.get(0));
+		// set array for the delete for tables with compound PKs,
+		// check if tablename == test
+		String [] attrsArray = new String[3];
+		if (tablename.equals("test")) {
+			attrsArray[0] = attrs.get(0);
+			attrsArray[1] = attrs.get(1);
+			attrsArray[2] = attrs.get(4);
+		} else{
+			attrsArray[0] = attrs.get(0);
+		}
+		returned = delete(tablename, attrsArray);
 		// if delete returned false, then return false
 		if (!returned) {
 			return returned;
@@ -214,6 +224,17 @@ public class DatabaseController {
 		}
 		return true;
  	}
+
+ 	public boolean delete(String tablename, String [] PKs) {
+ 		// check if tablename == "test" because is the only
+ 		// relation with a compound PK
+ 		if (tablename.equals("test")) {
+ 			// delete with compound key
+ 		} else {
+ 			// delete with only asingle pk
+ 		}
+
+ 	} // delete
 
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
  		String query = "SELECT * FROM bidunbar." + tablename;
