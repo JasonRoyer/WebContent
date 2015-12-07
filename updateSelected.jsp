@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>CSc 460 Program 4 Insert</title>
+		<title>CSc 460 Program 4 Update</title>
 		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 		<script type="text/javascript" src="scripts/scripts.js"></script>
 		<style>
@@ -24,10 +24,10 @@
 		</style>
 	</head>
 	<body>
-		<h2>CSc 460 Program 4 Delete</h2>
+		<h2>CSc 460 Program 4 Update</h2>
 		<a href="index.html">Home</a>		
 		<br />
-		<form action="deleteSelected.jsp">
+		<form action="updateSelected.jsp">
 		On Table: 
 		<select name="insertTableSelect" id="selecttableID" onChange="this.form.submit()">
 		
@@ -49,34 +49,34 @@
 	
 			var form;
 			switch (selectedText){
-				case "Office":
-					form = createTableSelected("OfficeID_Office");
-					break;
-				case "Employee":
-					form = createTableSelected("EmpID_Employee");
-					break;
-				case "Client":
-					form = createTableSelected("ClientID_Client");
-					break;
-				case "Lesson":
-					form = createTableSelected("LessonNum_Lesson");
-					break;
-				case "Car":
-					form = createTableSelected("CarID_Car");
-					break;
-				case "Interview":
-					form = createTableSelected("ClientID_Interview");
-					break;	
-				case "Test":
-					form = createTableSelected("ClientID_Test","TestType","TestDate");
-					break;	
+			case "Office":
+				form = createTableSelected("OfficeID_Office","Name","ManagerID","phone#","Address","City","State");
+				break;
+			case "Employee":
+				form = createTableSelected("EmpID_Employee","Name","DOB","Phone#","Gender","JobTitle","CarID","OfficeID");
+				break;
+			case "Client":
+				form = createTableSelected("ClientID_Client","Name","Gender","Address","City","PhoneNum","ValidLicense");
+				break;
+			case "Lesson":
+				form = createTableSelected("LessonNum_Lesson","CarID","ClientID","EmployeeID","Fee","LessonDate","MilesDriven");
+				break;
+			case "Car":
+				form = createTableSelected("CarID_Car","Mileage","Faults","EmpID");
+				break;
+			case "Interview":
+				form = createTableSelected("ClientID_Interview","EmpID","InterviewDate","Needs");
+				break;	
+			case "Test":
+				form = createTableSelected("ClientID_Test","TestType","Passed","Reason","TestDate");
+				break;	
 			
 			};
 			
 			document.getElementById("selectedTable").innerHTML = form;
 		}
 		function createTableSelected(){
-			var returnedString = "<form action=\"deleteProcess.jsp\">"+"<table>"+"<tr>";
+			var returnedString = "<form action=\"updateProcess.jsp\">"+"<table>"+"<tr>";
 			for (i=0; i < arguments.length; i++){
 				returnedString = returnedString + "<th>" + arguments[i].split("_")[0] + "</th>";
 			}
@@ -84,7 +84,7 @@
 			for (i=0; i < arguments.length; i++){
 				returnedString = returnedString + "<td><input type = \"text\" name=\""+ arguments[i] +"\"/> </td>";
 			}
-			returnedString = returnedString + "</tr> </table><input type =\"submit\" value=\"Delete\"></form>"
+			returnedString = returnedString + "</tr> </table><input type =\"submit\" value=\"Update\"></form>"
 			return returnedString;
 			
 		}
