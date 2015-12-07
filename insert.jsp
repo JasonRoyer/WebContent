@@ -48,22 +48,22 @@
 					form = createTableSelected("OfficeID_Office","Adrress","Name","ManagerID","phone#","City","State");
 					break;
 				case "Employee":
-					form = createTableSelected("Name_Employee","DOB","EmpID","Title","CarID","Phone#","OfficeID","Gender");
+					form = createTableSelected("EmpID_Employee","Name","DOB","PhoneNum","Gender","JobTitle","CarID","OfficeID");
 					break;
 				case "Client":
-					form = createTableSelected("Name_Client","Gender","Address","City","Phone#","ValidLicense","ClientID");
+					form = createTableSelected("ClientID_Client","Name","Gender","Address","City","PhoneNum","ValidLicense");
 					break;
 				case "Lesson":
-					form = createTableSelected("CarID_Lesson","ClientID","Fee","OfficeID","Lesson#","EmpID","MilesDriven");
+					form = createTableSelected("LessonNum_Lesson","CarID","ClientID","OfficeID","Fee","LessonDate","MilesDriven");
 					break;
 				case "Car":
-					form = createTableSelected("OfficeID_Car","CarID","Mileage","Faults");
+					form = createTableSelected("CarID_Car","Mileage","Faults","EmpID");
 					break;
 				case "Interview":
-					form = createTableSelected("EmpID_Interview","ClientID","Date","Needs","ValidLicense");
+					form = createTableSelected("EmpID_Interview","ClientID","InterviewDate","Needs");
 					break;	
 				case "Test":
-					form = createTableSelected("ClientID_Test","TestType","Passed","Reason","Date");
+					form = createTableSelected("ClientID_Test","TestType","Passed","Reason","TestDate");
 					break;	
 			
 			};
