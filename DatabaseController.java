@@ -459,14 +459,23 @@ public class DatabaseController {
  				columnNames.add("State");
  				break;
  			case "query1":
+ 				columnNames.add("Car ID");
  				break;
  			case "query2":
+ 				columnNames.add("Name");
+ 				columnNames.add("Phone #")
  				break;
  			case "query3":
+ 				columnNames.add("Office Name");
+ 				columnNames.add("City");
+ 				columnNames.add("State");
  				break;
  			case "query4":
+ 				columnNames.add("Office Names");
+ 				columnNames.add("Number of Employees");
  				break;
  			case "query5":
+ 				columnNames.add("Miles Driven");
  				break;
  			default:
  				System.err.println("Shouldn't be here");

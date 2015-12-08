@@ -4,7 +4,6 @@ create table test (
 	passed varchar2(1) check(passed in('y', 'n')) NOT NULL,
 	reason varchar2(200), 
 	testDate date NOT NULL,
-	FOREIGN KEY(clientID) REFERENCES client(clientID),
 	PRIMARY KEY(clientID, testType, testDate)
 );
 
@@ -24,8 +23,6 @@ create table interview (
 	empID number  NOT NULL,
 	interviewDate date  NOT NULL,
 	needs varchar2(200)  NOT NULL,
-	FOREIGN KEY(empID) REFERENCES employee(empID),
-	FOREIGN KEY(clientID) REFERENCES client(clientID),
 	PRIMARY KEY(clientID)
 );
 
@@ -37,9 +34,6 @@ create table lesson (
 	fee number check(fee > 0) NOT NULL,
 	lessonDate date NOT NULL,
 	milesDriven number check(milesDriven > 0) NOT NULL,
-	FOREIGN KEY(carID) REFERENCES car(carID),
-	FOREIGN KEY(clientID) REFERENCES client(clientID),
-	FOREIGN KEY(empID) REFERENCES employee(empID),
 	PRIMARY KEY(lessonNum)
 );
 
@@ -52,9 +46,7 @@ create table employee (
 	jobTitle varchar2(80) NOT NULL,
 	carID number NOT NULL,
 	officeID number NOT NULL,
-	PRIMARY KEY(empID),
-	FOREIGN KEY(carID) REFERENCES car(carID),
-	FOREIGN KEY(officeID) REFERENCES office(officeID) 
+	PRIMARY KEY(empID)	
 );
 
 create table car (
@@ -74,6 +66,22 @@ create table office (
 	city varchar2(80) NOT NULL,
 	state varchar2(80) NOT NULL,
 	PRIMARY KEY(officeID)
-	FOREIGN KEY(managerID) REFERENCES employee(empID)
 );
 
+drop table office cascade constraints;
+drop table car cascade constraints;
+drop table employee cascade constraints;
+drop table client cascade constraints;
+drop table test cascade constraints;
+drop table lesson cascade constraints;
+drop table interview cascade constraints;
+
+alter table office DROP FOREIGN KEY managerID;
+ALTER TABLE test DROP FOREIGN KEY(clientID):
+ALTER TABLE interview DROP FOREIGN KEY(empID);
+ALTER TABLE interview DROP FOREIGN KEY(clientID);
+ALTER TABLE lesson DROP FOREIGN KEY(carID);
+ALTER TABLE lesson DROP FOREIGN KEY(clientID);
+ALTER TABLE lesson DROP FOREIGN KEY(empID);
+alter table employee DROP foreign key (officeID);
+alter table employee DROP FOREIGN KEY(carID);
