@@ -128,6 +128,7 @@ public class DatabaseControllerRedux {
   	} // close
 
   	public boolean insert(String tableName, ArrayList<String> attributes) {
+  		tablename = tablename.toLowerCase();
 		String query = "";
 		Statement stmt = null;
 		ResultSet answer = null;
@@ -221,6 +222,7 @@ public class DatabaseControllerRedux {
 	 *	updating the table directly.
 	 */
  	public boolean update(String tablename, ArrayList<String> attrs) {
+ 		tablename = tablename.toLowerCase();
 		boolean returned = false;
 		// set array for the delete for tables with compound PKs,
 		// check if tablename == test
@@ -245,6 +247,7 @@ public class DatabaseControllerRedux {
  	public boolean delete(String tablename, ArrayList<String> PKs) {
  		// check if tablename == "test" because is the only
  		// relation with a compound PK
+ 		tablename = tablename.toLowerCase();
  		String query = "DELETE FROM " + tablename + " WHERE ";
  		Statement stmt = null;
 		ResultSet answer = null;
