@@ -4,8 +4,8 @@ create table test (
 	passed varchar2(1) check(passed in('y', 'n')) NOT NULL,
 	reason varchar2(200), 
 	testDate date NOT NULL,
-	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
-	PRIMARY KEY(clientID)
+	FOREIGN KEY(clientID) REFERENCES client(clientID),
+	PRIMARY KEY(clientID, testType, testDate)
 );
 
 create table client (
@@ -19,13 +19,13 @@ create table client (
 	PRIMARY KEY(clientID)
 );
 
-create table inteview (
+create table interview (
 	clientID number  NOT NULL,
 	empID number  NOT NULL,
 	interviewDate date  NOT NULL,
 	needs varchar2(200)  NOT NULL,
-	FOREIGN KEY(empID) REFERENCES bidunbar.employee(empID),
-	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
+	FOREIGN KEY(empID) REFERENCES employee(empID),
+	FOREIGN KEY(clientID) REFERENCES client(clientID),
 	PRIMARY KEY(clientID)
 );
 
@@ -37,9 +37,9 @@ create table lesson (
 	fee number check(fee > 0) NOT NULL,
 	lessonDate date NOT NULL,
 	milesDriven number check(milesDriven > 0) NOT NULL,
-	FOREIGN KEY(carID) REFERENCES bidunbar.car(carID),
-	FOREIGN KEY(clientID) REFERENCES bidunbar.client(clientID),
-	FOREIGN KEY(empID) REFERENCES bidunbar.employee(empID),
+	FOREIGN KEY(carID) REFERENCES car(carID),
+	FOREIGN KEY(clientID) REFERENCES client(clientID),
+	FOREIGN KEY(empID) REFERENCES employee(empID),
 	PRIMARY KEY(lessonNum)
 );
 
@@ -53,8 +53,8 @@ create table employee (
 	carID number NOT NULL,
 	officeID number NOT NULL,
 	PRIMARY KEY(empID),
-	FOREIGN KEY(carID) REFERENCES bidunbar.car(carID),
-	FOREIGN KEY(officeID) REFERENCES bidunbar.office(officeID) 
+	FOREIGN KEY(carID) REFERENCES car(carID),
+	FOREIGN KEY(officeID) REFERENCES office(officeID) 
 );
 
 create table car (
@@ -74,6 +74,6 @@ create table office (
 	city varchar2(80) NOT NULL,
 	state varchar2(80) NOT NULL,
 	PRIMARY KEY(officeID)
-	FOREIGN KEY(managerID) REFERENCES bidunbar.employee(empID)
+	FOREIGN KEY(managerID) REFERENCES employee(empID)
 );
 

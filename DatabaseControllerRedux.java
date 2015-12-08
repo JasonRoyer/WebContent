@@ -1,3 +1,12 @@
+package dbController;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import java.sql.ResultSet;
+import java.util.*;
 /**
  *	DatabaseController.java --	This program is what connectes all our jsp files to
  *	our database server. It establishes our connection and it will allow us to call
@@ -7,27 +16,31 @@
  *  course: csc460
  *	authors: Jorge Naranjo, Jason Royer, Brett Dunbar
  */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import java.sql.ResultSet;
-import java.util.*;
-
-public class DatabaseController {
-
-	/**
-	 * next few variables handles the connection, statement, username, and
-	 * password
-	 */
+public class DatabaseControllerRedux {
 	static final long serialVersionUID = 1L;
-	protected Connection conn;
-	protected Statement stmt;
-	protected String connectString = null;
-	protected String username = null, password = null;
+  	/**
+   	 * A handle to the connection to the DBMS.
+   	 */
+  	private Connection connection_;
+  	/**
+   	 * A handle to the statement.
+   	 */
+  	private Statement statement_;
+  	/**
+   	 * The connect string to specify the location of DBMS
+   	 */
+  	private String connect_string_ = null;
+  	/**
+   	 * The password that is used to connect to the DBMS.
+   	 */
+  	private String password = null;
+  	/**
+   	 * The username that is used to connect to the DBMS.
+   	*/
+  	private String username = null;
 
-	private final String testClientID = "\"clientID\"",
+  	private final String testClientID = "\"clientID\"",
 			testType = "\"testType\"",
 			testPassed = "\"passed\"",
 			testReason = "\"reason\"",
@@ -73,72 +86,88 @@ public class DatabaseController {
 			officeAddress = "\"address\"", officeCity = "\"city\"",
 			officeState = "\"state\""; // office
 
-	// contructor to get the connection going
-	public void openConnection() {
-		boolean opened = false;
-		while (!opened) {
-			try {
-				Class.forName("oracle.jdbc.OracleDriver");
-				conn = DriverManager.getConnection(connectString, username,
-						password);
-				stmt = conn.createStatement();
-				opened = true;
-				return;
-			} catch (SQLException sqlE) {
-				sqlE.printStackTrace();
-				opened = false;
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				System.exit(1);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				System.exit(2);
-			}
-		} // end while
-	} // end openConnection()
 
-	public boolean insert(String tableName, ArrayList<String> attributes) {
+  	public DatabaseControllerRedux() {
+  		// username and password
+  		username = "jnaranjo1";
+  		password = "a5650";
+  		connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
+  	} // DatabaseController
+
+  	// opens the connection for DBMS
+  	public void Open() {
+  		boolean opened = false;
+  		while (!opened) {
+  			try {
+		        Class.forName("oracle.jdbc.OracleDriver");
+		        connection_ = DriverManager.getConnection(connect_string_, username, password);
+		        statement_ = connection_.createStatement();
+		        opened = true;
+		        return;
+		    } catch (SQLException sqlex) {
+		    	sqlex.printStackTrace();
+		        opened  = false;
+		    } catch (ClassNotFoundException e) {
+		    	e.printStackTrace();
+		        System.exit(1); 
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		        System.exit(2);
+		    }
+  		} // while
+  	} // end open
+
+  	public void Close() {
+  		try {
+  			statement_.close();
+  			connection_.close();
+  		} catch (SQLException e) {
+  			System.err.println("Commit failed");
+  			e.printStackTrace();
+  		}
+  	} // close
+
+  	public boolean insert(String tableName, ArrayList<String> attributes) {
 		String query = "";
 		Statement stmt = null;
 		ResultSet answer = null;
-
 		try {
 			switch (tableName) {
 			case "test":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + testClientID + ", "
-						+ testType + ", " + testPassed + ", " + testReason + ", "
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + testClientID + " "
+						+ testType + " " + testPassed + " " + testReason + " "
 						+ testDate + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", '"
-						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
-						+ attributes.get(3) + "', '" + attributes.get(4) + "')";
+						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(3) + ", " + attributes.get(4) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			case "client":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + clientID +  ", "
-						+ clientName + ", " + clientGender + ", " + clientAddress + ", "
-						+ clientCity + ", " + clientPhone + ", " + clientLicense + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", '"
-						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
-						+ attributes.get(3) + "', '" + attributes.get(4) + "', " + Integer.parseInt(attributes.get(5)) 
-						+ ", '" + attributes.get(6) + "')";
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + clientID +  " "
+						+ clientName + " " + clientGender + " " + clientAddress + " "
+						+ clientCity + " " + clientPhone + " " + clientLicense + ") " + " values" + " ("
+						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(3) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
+						+ ", " + attributes.get(6) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			case "interview":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + interviewClientID +  ", "
-						+ interviewEmployeeID + ", " + interviewDate + ", " + interviewNeeds + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", '"
-						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
-						+ attributes.get(3) + "', '" + attributes.get(4) + "')";
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + interviewClientID +  " "
+						+ interviewEmployeeID + " " + interviewDate + " " + interviewNeeds + " values" + " ("
+						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(3) + ", " + attributes.get(4) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			case "lesson":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + lessonNum +  ", "
-						+ lessonCarID + ", " + lessonClientID + ", " + lessonEmployeeID + ", "
-						+ lessonFee + ", " + lessonDate + ", " + lessonMilesDriven + ") " + " values" + " ("
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + lessonNum +  " "
+						+ lessonCarID + " " + lessonClientID + " " + lessonEmployeeID + " "
+						+ lessonFee + " " + lessonDate + " " + lessonMilesDriven + ") " + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ Integer.parseInt(attributes.get(1)) + ", " + Integer.parseInt(attributes.get(2)) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ", " + Integer.parseInt(attributes.get(4)) + ", " + Integer.parseInt(attributes.get(5)) 
@@ -146,40 +175,38 @@ public class DatabaseController {
 				answer = stmt.executeQuery(query);
 				break;
 			case "employee":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + employeeID +  ", "
-						+ employeeName + ", " + employeeDOB + ", " + employeePhoneNum + ", "
-						+ employeeGender + ", " + employeeJobTitle + ", " + employeeCarID + "," 
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + employeeID +  " "
+						+ employeeName + " " + employeeDOB + " " + employeePhoneNum + " "
+						+ employeeGender + " " + employeeJobTitle + " " + employeeCarID + "," 
 						+ employeeOfficeID + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", '"
-						+ attributes.get(1) + "', " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", '" + attributes.get(4) + "', " + Integer.parseInt(attributes.get(5)) 
+						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
+						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
 						+ ", " + Integer.parseInt(attributes.get(6)) + Integer.parseInt(attributes.get(7)) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			case "car":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + carID +  ", "
-						+ carMileage + ", " + carFaults + ", " + carEmpID + " values" + " ("
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + carID +  " "
+						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ Integer.parseInt(attributes.get(1)) + ", " + attributes.get(2) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			case "office":
-				stmt = conn.createStatement();
-				query = "insert into " + tableName + " (" + officeID +  ", "
-						+ officeName + ", " + officeManagerID + ", " + officePhoneNum + ", "
-						+ officeAddress + ", " + officeCity + ", " + officeState + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", '"
-						+ attributes.get(1) + "', " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", '" + attributes.get(4) + "', '" + attributes.get(5) 
-						+ "', '" + attributes.get(6) + "')";
+				stmt = connection_.createStatement();
+				query = "insert into " + tableName + " (" + officeID +  " "
+						+ officeName + " " + officeManagerID + " " + officePhoneNum + " "
+						+ officeAddress + " " + officeCity + ", " + officeState + ") " + " values" + " ("
+						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
+						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + attributes.get(5) 
+						+ ", " + attributes.get(6) + ")";
 				answer = stmt.executeQuery(query);
 				break;
 			}
-			
-			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Unable to insert into database!");
@@ -187,16 +214,6 @@ public class DatabaseController {
 		}
 		return false;
 	} //insert
-	
-	public void closeConnection() {
-		try {
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		conn = null;
-	} // end closeConnetion()
 
 	/** update --	@param tablename - the name of the relation
 	 *				@param attr - list of the attribute info
@@ -226,8 +243,13 @@ public class DatabaseController {
 			return returned;
 		}
 		return true;
- 	}
+ 	} // update
 
+ 	/**
+ 	 *	delete - @param tablename - string that's passed in contains the name of the able to be deleted
+ 	 * 			 @param PKs - array of strings, typically one element, contains PK(s) to associate with the tuple to be deleted
+ 	 *	This method deletes the tuple from the relation passed in based on the PKs given along when it's called	
+ 	 */
  	public boolean delete(String tablename, String [] PKs) {
  		// check if tablename == "test" because is the only
  		// relation with a compound PK
@@ -237,7 +259,7 @@ public class DatabaseController {
 
  		if (tablename.equals("test")) {
  			// delete with compound key
- 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate"
+ 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate";
  		} else {
  			// delete with only asingle pk
  			switch (tablename) {
@@ -277,15 +299,11 @@ public class DatabaseController {
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
  		String query = "SELECT * FROM bidunbar." + tablename;
  		try {
- 			ResultSet rs = stmt.executeQuery(query);
- 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
- 			// TODO create a method to get the column names of each table, add it to the arraylist
- 			List<String> tuple = new ArrayList<String>();
- 			tuple.add("dummy info");
- 			tupleList.add(tuple);
+ 			ResultSet rs = statement_.executeQuery(query);
+ 			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
  			while(rs.next()) {
- 				tuple = new ArrayList<String>();
- 				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
+ 				ArrayList<String> tuple = new ArrayList<String>();
+ 				
  				switch(tablename) {
  					case "test":
  						tuple.add(rs.getString("clientID"));
@@ -344,7 +362,7 @@ public class DatabaseController {
  						tuple.add(rs.getString("state"));
  						break;
  					default:
- 						System.err.println("uhh, what? look at findAll()")
+ 						System.err.println("uhh, what? look at findAll()");
  						break;
  				}// switch
  				tupleList.add(tuple);
@@ -356,50 +374,4 @@ public class DatabaseController {
  		return null;
  	} // end findAll
 
- 	public ArrayList<ArrayList<String>> query(int queryNum) {
- 		// all the queries possible to be ran
- 		String query1 = "select carID from car where carID not in (Select carID from car where faults='y')";
- 		String query2 = "select distinct employee.name, employee.phoneNum from office, employee where jobTitle='Manager'";
- 		String query3 = "select address, city, state from office where city='Tucson'";
- 		String query4 = "select officeName, (select count(*) from employee where employee.officeID=office.officeID) as NumEmps from office";
- 		String query5 = "select avg(milesDriven) as \"Miles Driven\" from lesson";
- 		
- 		String runQuery = "";
- 		switch (queryNum) {
- 			case 1:
- 				runQuery = query1;
- 				break;
- 			case 2:
- 				runQuery = query2;
- 				break;
- 			case 3:
- 				runQuery = query3;
- 				break;
- 			case 4:
- 				runQuery = query4;
- 				break;
- 			case 5:
- 				runQuery = query5;
- 				break;
- 			default:	
- 				runQuery = query1;
- 				break;	
- 		}
-
- 		try {
- 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
- 			// TODO create a method to get the column names of each table, add it to the arraylist
- 			List<String> tuple = new ArrayList<String>();
- 			ResultSet rs = statment_.executeQuery(runQuery);
- 			addColumnNames
- 			while(rs.next) {
-
- 			} // while
- 		} catch (SQLException e) {
- 			e.printStackTrace();
- 		}
-
-
-
- 	} // query()
-} // end DatabaseController
+}
