@@ -167,9 +167,9 @@ public class DatabaseControllerRedux {
 			case "employee":
 				query = "insert into " + tableName + " values" + " ("
 						+ attributes.get(0) + ", '"
-						+ attributes.get(1) + "', " + attributes.get(2) + ", "
-						+ "TO_DATE('" + attributes.get(3) + "','mm/dd/yyyy'), '" + attributes.get(4) + "', '" + attributes.get(5) 
-						+ "', " + attributes.get(6) + attributes.get(7) + ")";
+						+ attributes.get(1) + "', TO_DATE('" + attributes.get(2) + "','mm/dd/yyyy'), "
+						+ attributes.get(3) + ", '" + attributes.get(4) + "', '" + attributes.get(5) + "', "
+						+ attributes.get(6) + ", "+ attributes.get(7) + ")";
 				answer = statement_.executeQuery(query);
 				break;
 			case "car":
