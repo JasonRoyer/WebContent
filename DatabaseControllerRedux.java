@@ -147,7 +147,7 @@ public class DatabaseControllerRedux {
 						+ testDate + ") " + " values" + " ("
 						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + "TO_DATE('" + attributes.get(4) + ",'mm/dd/yy hh24:mi:00'))";
+						+ attributes.get(3) + ", " + "TO_DATE('" + attributes.get(4) + "','mm/dd/yy hh24:mi:00'))";
 				answer = statement_.executeQuery(query);
 				break;
 			case "client":
@@ -155,9 +155,9 @@ public class DatabaseControllerRedux {
 				query = "insert into " + tableName + " (" + clientID +  " "
 						+ clientName + " " + clientGender + " " + clientAddress + " "
 						+ clientCity + " " + clientPhone + " " + clientLicense + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
+						+ attributes.get(3) + ", " + attributes.get(4) + ", " + attributes.get(5) 
 						+ ", " + attributes.get(6) + ")";
 				answer = statement_.executeQuery(query);
 				break;
@@ -165,9 +165,9 @@ public class DatabaseControllerRedux {
 				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + interviewClientID +  " "
 						+ interviewEmployeeID + " " + interviewDate + " " + interviewNeeds + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + attributes.get(4) + ")";
+						+ attributes.get(0) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", TO_DATE('"
+						+ attributes.get(3) + "','mm/dd/yy hh24:mi:00'), " + attributes.get(4) + ")";
 				answer = statement_.executeQuery(query);
 				break;
 			case "lesson":
@@ -175,10 +175,10 @@ public class DatabaseControllerRedux {
 				query = "insert into " + tableName + " (" + lessonNum +  " "
 						+ lessonCarID + " " + lessonClientID + " " + lessonEmployeeID + " "
 						+ lessonFee + " " + lessonDate + " " + lessonMilesDriven + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ Integer.parseInt(attributes.get(1)) + ", " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", " + Integer.parseInt(attributes.get(4)) + ", " + Integer.parseInt(attributes.get(5)) 
-						+ ", " + Integer.parseInt(attributes.get(6)) + ")";
+						+ attributes.get(0) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(3) + ", " + attributes.get(4) + ", " + attributes.get(5) 
+						+ ", TO_DATE('" + attributes.get(6) + "','mm/dd/yy hh24:mi:00'))";
 				answer = statement_.executeQuery(query);
 				break;
 			case "employee":
@@ -187,10 +187,10 @@ public class DatabaseControllerRedux {
 						+ employeeName + " " + employeeDOB + " " + employeePhoneNum + " "
 						+ employeeGender + " " + employeeJobTitle + " " + employeeCarID + "," 
 						+ employeeOfficeID + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
-						+ ", " + Integer.parseInt(attributes.get(6)) + Integer.parseInt(attributes.get(7)) + ")";
+						+ attributes.get(0) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ "TO_DATE('" + attributes.get(3) + "','mm/dd/yy hh24:mi:00'), " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
+						+ ", " + attributes.get(6) + attributes.get(7) + ")";
 				answer = statement_.executeQuery(query);
 				break;
 			case "car":
@@ -212,9 +212,9 @@ public class DatabaseControllerRedux {
 				query = "insert into " + tableName + " (" + officeID +  " "
 						+ officeName + " " + officeManagerID + " " + officePhoneNum + " "
 						+ officeAddress + " " + officeCity + ", " + officeState + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + attributes.get(5) 
+						+ attributes.get(0) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(3) + ", " + attributes.get(4) + ", " + attributes.get(5) 
 						+ ", " + attributes.get(6) + ")";
 				answer = statement_.executeQuery(query);
 				break;
