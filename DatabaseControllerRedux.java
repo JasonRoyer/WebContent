@@ -296,18 +296,23 @@ public class DatabaseControllerRedux {
 
  	} // delete
 
+ 	/**
+ 	 * findAll method takes in the string of the table name desired to be retuned.
+ 	 * it creates and AL of AL of strings
+ 	 */
  	
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
+ 		tablename = tablename.toLowerCase();
  		String query = "SELECT * FROM jnaranjo1." + tablename;
  		try {
  			ResultSet rs = statement_.executeQuery(query);
  			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
  			// call method to get the column names of each table, add it to the arraylist
  			ArrayList<String> tuple = new ArrayList<String>();
- 			tupleList.add(addColumnNames(tablename));
+ 			tupleList.add(addColumnNames(tablename);
  			while(rs.next()) {
  				tuple = new ArrayList<String>();
- 				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
+ 				
  				switch(tablename) {
  					case "test":
  						tuple.add(rs.getString("clientID"));
@@ -373,9 +378,10 @@ public class DatabaseControllerRedux {
  			} // end while
  			return tupleList;
  		} catch (SQLException e) {
+
  			e.printStackTrace();
  		}
- 		return null;
+ 		return tupleList;
  	} // end findAll
 
  	public ArrayList<ArrayList<String>> query(int queryNum) {
