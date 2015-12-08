@@ -309,7 +309,7 @@ public class DatabaseControllerRedux {
  			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
  			// call method to get the column names of each table, add it to the arraylist
  			ArrayList<String> tuple = new ArrayList<String>();
- 			tupleList.add(addColumnNames(tablename);
+ 			tupleList.add(addColumnNames(tablename));
  			while(rs.next()) {
  				tuple = new ArrayList<String>();
  				
@@ -346,14 +346,22 @@ public class DatabaseControllerRedux {
  						tuple.add(rs.getString("milesDriven"));
  						break;
  					case "employee":
- 						tuple.add(rs.getString("empID"));
- 						tuple.add(rs.getString("name"));
- 						tuple.add(rs.getString("DOB"));
- 						tuple.add(rs.getString("phoneNum"));
- 						tuple.add(rs.getString("gender"));
- 						tuple.add(rs.getString("jobTitle"));
- 						tuple.add(rs.getString("carID"));
- 						tuple.add(rs.getString("officeID"));
+ 						// tuple.add(rs.getString("empID"));
+ 						// tuple.add(rs.getString("name"));
+ 						// tuple.add(rs.getString("DOB"));
+ 						// tuple.add(rs.getString("phoneNum"));
+ 						// tuple.add(rs.getString("gender"));
+ 						// tuple.add(rs.getString("jobTitle"));
+ 						// tuple.add(rs.getString("carID"));
+ 						// tuple.add(rs.getString("officeID"));
+ 						tuple.add(rs.getString(1));
+ 						tuple.add(rs.getString(2));
+ 						tuple.add(rs.getString(3));
+ 						tuple.add(rs.getString(4));
+ 						tuple.add(rs.getString(5));
+ 						tuple.add(rs.getString(6));
+ 						tuple.add(rs.getString(8));
+ 						tuple.add(rs.getString(9));
  						break;
  					case "car":
  						tuple.add(rs.getString("carID"));
@@ -381,7 +389,7 @@ public class DatabaseControllerRedux {
 
  			e.printStackTrace();
  		}
- 		return tupleList;
+ 		return null;
  	} // end findAll
 
  	public ArrayList<ArrayList<String>> query(int queryNum) {
