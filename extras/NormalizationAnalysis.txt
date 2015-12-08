@@ -32,4 +32,4 @@ The car relation is in 3rd normal form because the mileage, faults, and empID ar
 from one another, and no transitive dependencies exist.
 
 The office relation is in 3rd normal form because the officeName, managerID, phoneNum, address, city, and state are all functionally determined by the officeID 
-primary key; that is, these attributes can only be determined by a uniquely identified office, and not by each other, and no transitive dependencies exists.
+primary key; that is, these attributes can only be determined by a uniquely identified office, and not by each other, and no transitive dependencies exist.
