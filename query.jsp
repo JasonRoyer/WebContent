@@ -26,15 +26,15 @@
 		<br />
 		<br />
 	<form action ="queryProcess.jsp">
-	  <input type="radio" name="query" value="query1" checked>query1
+	  <input type="radio" name="query" value="query1" checked>What are the CarIds of the cars without faults?
 	  <br>
-	  <input type="radio" name="query" value="query2">query2
+	  <input type="radio" name="query" value="query2">What are the names and numbers of managers?
 	  <br>
-	  <input type="radio" name="query" value="query3">query3
+	  <input type="radio" name="query" value="query3">What are the Postal addresses of all offices in Tucson?
 	  <br>
-	  <input type="radio" name="query" value="query4">query4
+	  <input type="radio" name="query" value="query4">How many employees work at each office?
 	  <br>
-	  <input type="radio" name="query" value="query5">query5
+	  <input type="radio" name="query" value="query5">What is the average miles driven during lessons?
 	   <br/><br/>
 	  <input type ="submit" value="Execute Query">
 	</form>

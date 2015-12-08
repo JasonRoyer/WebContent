@@ -25,7 +25,7 @@
 		dbcontroller.Open();
 
 		
-		ArrayList<ArrayList<String>> relation =  dbcontroller.query(table);
+		ArrayList<ArrayList<String>> relation =  dbcontroller.query(Integer.parseInt(table));
 
 		StringBuffer content = new StringBuffer();
 		
