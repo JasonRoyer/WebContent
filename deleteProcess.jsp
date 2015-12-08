@@ -47,7 +47,7 @@ DatabaseControllerRedux dbcontroller = new DatabaseControllerRedux();
 
 dbcontroller.Open();
 
-if(dbcontroller.delete(table,(String[]) values.toArray())){
+if(dbcontroller.delete(table,values)){
 	out.write("delete Successful");
 }else {
 	out.write("delete Failed");

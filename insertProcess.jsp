@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<%@page import="java.util.*" %>
+<%@page import="java.util.*, dbController.*" %>
 <html>
 <head>
 	<title>Insert Results</title>
@@ -48,20 +48,18 @@ for(String str: tempArray){
 
 
 
-out.write(values.toString());
 
-//DatabaseController dbcontroller = new DatabaseController();
+DatabaseControllerRedux dbcontroller = new DatabaseControllerRedux();
 
-//dbcontroller.openConnection();
+dbcontroller.Open();
+if(dbcontroller.insert(table,values)){
+	out.write("insert Successful");
+}else {
+	out.write("insert Failed");
+}
+ 
 
-//if(dbcontroller.insert(table,values)){
-//	out.write("Inser Successful");
-//}else {
-//	out.write("Inser Failed");
-//}
-
-
-//dbcontroller.closeConnection();
+dbcontroller.Close();
 
 
 
