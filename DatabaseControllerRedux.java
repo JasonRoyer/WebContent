@@ -222,8 +222,7 @@ public class DatabaseControllerRedux {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Unable to insert into database!");
-			// System.exit(-1);
-			return false;	
+				
 		}
 		return false;
 	} //insert
