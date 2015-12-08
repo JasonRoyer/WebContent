@@ -281,7 +281,6 @@ public class DatabaseController {
  			List<ArrayList> tupleList = new ArrayList<ArrayList>();
  			// call method to get the column names of each table, add it to the arraylist
  			List<String> tuple = new ArrayList<String>();
-
  			tupleList.add(columnNames(tablename));
  			while(rs.next()) {
  				tuple = new ArrayList<String>();
@@ -363,42 +362,71 @@ public class DatabaseController {
  		String query3 = "select address, city, state from office where city='Tucson'";
  		String query4 = "select officeName, (select count(*) from employee where employee.officeID=office.officeID) as NumEmps from office";
  		String query5 = "select avg(milesDriven) as \"Miles Driven\" from lesson";
- 		
+ 		List<ArrayList> tupleList = new ArrayList<ArrayList>();
  		String runQuery = "";
  		switch (queryNum) {
  			case 1:
+ 				tupleList.add(addColumnNames("query1"));
  				runQuery = query1;
  				break;
  			case 2:
+ 				tupleList.add(addColumnNames("query2"));
  				runQuery = query2;
  				break;
  			case 3:
+ 				tupleList.add(addColumnNames("query3"));
  				runQuery = query3;
  				break;
  			case 4:
+ 				tupleList.add(addColumnNames("query4"));
  				runQuery = query4;
  				break;
  			case 5:
+ 				tupleList.add(addColumnNames("query5"));
  				runQuery = query5;
  				break;
- 			default:	
+ 			default:
+ 				tupleList.add(addColumnNames("query1"));	
  				runQuery = query1;
  				break;	
  		}
 
  		try {
- 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
- 			// TODO create a method to get the column names of each table, add it to the arraylist
  			List<String> tuple = new ArrayList<String>();
  			ResultSet rs = statment_.executeQuery(runQuery);
  			addColumnNames
  			while(rs.next) {
-
+ 				switch (queryNum) {
+ 					case 1:
+ 						tuple.add(rs.getString("carID"));
+ 						break;
+ 					case 2:
+ 						tuple.add(rs.getString("name"));
+ 						tuple.add(rs.getString("phoneNum"));
+ 						break;
+ 					case 3:
+ 						tuple.add(rs.getString("address"));
+ 						tuple.add(rs.getString("city"));
+ 						tuple.add(rs.getString("state"));
+ 						break;
+ 					case 4:
+ 						tuple.add(rs.getString("officeName"));
+ 						tuple.add(rs.getString("numEmps"));
+ 						break;
+ 					case 5:
+ 						tuple.add(rs.getString("Miles Driven"));
+ 						break;
+ 					default:
+ 						tuple.add(rs.getString("carID"));
+ 						break;
+ 				}
+ 				tupleList.add(tuple);
  			} // while
  		} catch (SQLException e) {
  			e.printStackTrace();
+ 			exit(1);
  		}
-
+ 		return tupleList;
  	} // query()
 
 

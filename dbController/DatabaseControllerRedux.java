@@ -300,11 +300,11 @@ public class DatabaseControllerRedux {
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
  		String query = "SELECT * FROM bidunbar." + tablename;
  		try {
- 			ResultSet rs = statement_.executeQuery(query);
- 			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
+ 			ResultSet rs = stmt.executeQuery(query);
+ 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
  			// call method to get the column names of each table, add it to the arraylist
- 			ArrayList<String> tuple = new ArrayList<String>();
- 			tupleList.add(addColumnNames(tablename));
+ 			List<String> tuple = new ArrayList<String>();
+ 			tupleList.add(columnNames(tablename));
  			while(rs.next()) {
  				tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
@@ -385,7 +385,7 @@ public class DatabaseControllerRedux {
  		String query3 = "select address, city, state from office where city='Tucson'";
  		String query4 = "select officeName, (select count(*) from employee where employee.officeID=office.officeID) as NumEmps from office";
  		String query5 = "select avg(milesDriven) as \"Miles Driven\" from lesson";
- 		ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
+ 		List<ArrayList> tupleList = new ArrayList<ArrayList>();
  		String runQuery = "";
  		switch (queryNum) {
  			case 1:
@@ -415,10 +415,10 @@ public class DatabaseControllerRedux {
  		}
 
  		try {
- 			ArrayList<String> tuple = new ArrayList<String>();
- 			ResultSet rs = statement_.executeQuery(runQuery);
+ 			List<String> tuple = new ArrayList<String>();
+ 			ResultSet rs = statment_.executeQuery(runQuery);
  			
- 			while(rs.next()) {
+ 			while(rs.next) {
  				switch (queryNum) {
  					case 1:
  						tuple.add(rs.getString("carID"));
@@ -453,8 +453,8 @@ public class DatabaseControllerRedux {
 
 
  	// This method adds the column names of the table passed in and returns them as an AL of Strings
- 	public ArrayList<String> addColumnNames(String tablename) {
- 		ArrayList<String> columnNames = new ArrayList<String>();
+ 	public Arraylist<String> addColumnNames(String tablename) {
+ 		ArrayList<String> columnNames = new Arraylist<String>();
  		switch(tablename) {
  			case "test":
  				columnNames.add("Client ID");
