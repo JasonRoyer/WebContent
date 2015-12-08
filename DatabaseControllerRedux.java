@@ -122,7 +122,6 @@ public class DatabaseControllerRedux {
   			statement_.close();
   			connection_.close();
   		} catch (SQLException e) {
-  			System.err.println("Commit failed");
   			e.printStackTrace();
   		}
   		connection_ = null;
@@ -225,15 +224,7 @@ public class DatabaseControllerRedux {
 		boolean returned = false;
 		// set array for the delete for tables with compound PKs,
 		// check if tablename == test
-		String [] attrsArray = new String[3];
-		if (tablename.equals("test")) {
-			attrsArray[0] = attrs.get(0);
-			attrsArray[1] = attrs.get(1);
-			attrsArray[2] = attrs.get(4);
-		} else{
-			attrsArray[0] = attrs.get(0);
-		}
-		returned = delete(tablename, attrsArray);
+		returned = delete(tablename, attrs);
 		// if delete returned false, then return false
 		if (!returned) {
 			return returned;
@@ -251,7 +242,7 @@ public class DatabaseControllerRedux {
  	 * 			 @param PKs - array of strings, typically one element, contains PK(s) to associate with the tuple to be deleted
  	 *	This method deletes the tuple from the relation passed in based on the PKs given along when it's called	
  	 */
- 	public boolean delete(String tablename, String [] PKs) {
+ 	public boolean delete(String tablename, ArrayList<String> PKs) {
  		// check if tablename == "test" because is the only
  		// relation with a compound PK
  		String query = "DELETE FROM " + tablename + " WHERE ";
@@ -260,27 +251,27 @@ public class DatabaseControllerRedux {
 
  		if (tablename.equals("test")) {
  			// delete with compound key
- 			query += PKs[0] + "= clientID AND " + PKs[1] + "=testType AND " + PKs[2] + "=testDate";
+ 			query += PKs.get(0) + "= clientID AND " + PKs.get(1) + "=testType AND " + PKs.get(2) + "=testDate";
  		} else {
  			// delete with only asingle pk
  			switch (tablename) {
  				case "client":
- 					query += PKs[0] + "= clientID";
+ 					query += PKs.get(0) + "= clientID";
  					break;
  				case "interview":
- 					query += PKs[0] + "= clientID";
+ 					query += PKs.get(0) + "= clientID";
  					break;
  				case "lesson":
- 					query += PKs[0] + "= lessonNum";
+ 					query += PKs.get(0) + "= lessonNum";
  					break;
  				case "employee":
- 					query += PKs[0] + "= empID";
+ 					query += PKs.get(0) + "= empID";
  					break;
  				case "car":
- 					query += PKs[0] + "= carID";
+ 					query += PKs.get(0) + "= carID";
  					break;
  				case "office":
- 					query += PKs[0] + "= officeID";
+ 					query += PKs.get(0) + "= officeID";
  					break;				
  			} // switch
  		} // if/else
