@@ -296,9 +296,14 @@ public class DatabaseControllerRedux {
 
  	} // delete
 
+ 	/**
+ 	 * findAll method takes in the string of the table name desired to be retuned.
+ 	 * it creates and AL of AL of strings
+ 	 */
  	
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
- 		String query = "SELECT * FROM bidunbar." + tablename;
+ 		tablename = tablename.toLowerCase();
+ 		String query = "SELECT * FROM jnaranjo1." + tablename;
  		try {
  			ResultSet rs = statement_.executeQuery(query);
  			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
@@ -307,7 +312,7 @@ public class DatabaseControllerRedux {
  			tupleList.add(addColumnNames(tablename));
  			while(rs.next()) {
  				tuple = new ArrayList<String>();
- 				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
+ 				
  				switch(tablename) {
  					case "test":
  						tuple.add(rs.getString("clientID"));
@@ -341,14 +346,22 @@ public class DatabaseControllerRedux {
  						tuple.add(rs.getString("milesDriven"));
  						break;
  					case "employee":
- 						tuple.add(rs.getString("empID"));
- 						tuple.add(rs.getString("name"));
- 						tuple.add(rs.getString("DOB"));
- 						tuple.add(rs.getString("phoneNum"));
- 						tuple.add(rs.getString("gender"));
- 						tuple.add(rs.getString("jobTitle"));
- 						tuple.add(rs.getString("carID"));
- 						tuple.add(rs.getString("officeID"));
+ 						// tuple.add(rs.getString("empID"));
+ 						// tuple.add(rs.getString("name"));
+ 						// tuple.add(rs.getString("DOB"));
+ 						// tuple.add(rs.getString("phoneNum"));
+ 						// tuple.add(rs.getString("gender"));
+ 						// tuple.add(rs.getString("jobTitle"));
+ 						// tuple.add(rs.getString("carID"));
+ 						// tuple.add(rs.getString("officeID"));
+ 						tuple.add(rs.getString(1));
+ 						tuple.add(rs.getString(2));
+ 						tuple.add(rs.getString(3));
+ 						tuple.add(rs.getString(4));
+ 						tuple.add(rs.getString(5));
+ 						tuple.add(rs.getString(6));
+ 						tuple.add(rs.getString(8));
+ 						tuple.add(rs.getString(9));
  						break;
  					case "car":
  						tuple.add(rs.getString("carID"));
@@ -373,6 +386,7 @@ public class DatabaseControllerRedux {
  			} // end while
  			return tupleList;
  		} catch (SQLException e) {
+
  			e.printStackTrace();
  		}
  		return null;
