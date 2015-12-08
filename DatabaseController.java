@@ -276,10 +276,10 @@ public class DatabaseController {
  		try {
  			ResultSet rs = stmt.executeQuery(query);
  			List<ArrayList> tupleList = new ArrayList<ArrayList>();
- 			// TODO create a method to get the column names of each table, add it to the arraylist
+ 			// call method to get the column names of each table, add it to the arraylist
  			List<String> tuple = new ArrayList<String>();
- 			tuple.add("dummy info");
- 			tupleList.add(tuple);
+
+ 			tupleList.add(columnNames(tablename));
  			while(rs.next()) {
  				tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
