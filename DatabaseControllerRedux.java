@@ -147,7 +147,7 @@ public class DatabaseControllerRedux {
 						+ testDate + ") " + " values" + " ("
 						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + attributes.get(4) + ")";
+						+ attributes.get(3) + ", " + "TO_DATE('" + attributes.get(4) + "'mm/dd/yy hh24:mi:00'))";
 				answer = statement_.executeQuery(query);
 				break;
 			case "client":
@@ -195,11 +195,16 @@ public class DatabaseControllerRedux {
 				break;
 			case "car":
 				// stmt = connection_.createStatement();
+				// query = "insert into " + tableName + " (" + carID +  " "
+				// 		+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
+				// 		+ Integer.parseInt(attributes.get(0)) + ", "
+				// 		+ Integer.parseInt(attributes.get(1)) + ", " + attributes.get(2) + ", "
+				// 		+ Integer.parseInt(attributes.get(3)) + ")";
 				query = "insert into " + tableName + " (" + carID +  " "
 						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
-						+ Integer.parseInt(attributes.get(1)) + ", " + attributes.get(2) + ", "
-						+ Integer.parseInt(attributes.get(3)) + ")";
+						+ attributes.get(0) + ", "
+						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(3) + ")";
 				answer = statement_.executeQuery(query);
 				break;
 			case "office":
