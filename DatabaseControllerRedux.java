@@ -128,24 +128,24 @@ public class DatabaseControllerRedux {
   	} // close
 
   	public boolean insert(String tableName, ArrayList<String> attributes) {
-  		tablename = tablename.toLowerCase();
+  		tableName = tableName.toLowerCase();
 		String query = "";
-		Statement stmt = null;
+		// Statement stmt = null;
 		ResultSet answer = null;
 		try {
 			switch (tableName) {
 			case "test":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + testClientID + " "
 						+ testType + " " + testPassed + " " + testReason + " "
 						+ testDate + ") " + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
 						+ attributes.get(3) + ", " + attributes.get(4) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			case "client":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + clientID +  " "
 						+ clientName + " " + clientGender + " " + clientAddress + " "
 						+ clientCity + " " + clientPhone + " " + clientLicense + ") " + " values" + " ("
@@ -153,19 +153,19 @@ public class DatabaseControllerRedux {
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
 						+ attributes.get(3) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
 						+ ", " + attributes.get(6) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			case "interview":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + interviewClientID +  " "
 						+ interviewEmployeeID + " " + interviewDate + " " + interviewNeeds + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
 						+ attributes.get(3) + ", " + attributes.get(4) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			case "lesson":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + lessonNum +  " "
 						+ lessonCarID + " " + lessonClientID + " " + lessonEmployeeID + " "
 						+ lessonFee + " " + lessonDate + " " + lessonMilesDriven + ") " + " values" + " ("
@@ -173,10 +173,10 @@ public class DatabaseControllerRedux {
 						+ Integer.parseInt(attributes.get(1)) + ", " + Integer.parseInt(attributes.get(2)) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ", " + Integer.parseInt(attributes.get(4)) + ", " + Integer.parseInt(attributes.get(5)) 
 						+ ", " + Integer.parseInt(attributes.get(6)) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			case "employee":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + employeeID +  " "
 						+ employeeName + " " + employeeDOB + " " + employeePhoneNum + " "
 						+ employeeGender + " " + employeeJobTitle + " " + employeeCarID + "," 
@@ -185,19 +185,19 @@ public class DatabaseControllerRedux {
 						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + Integer.parseInt(attributes.get(5)) 
 						+ ", " + Integer.parseInt(attributes.get(6)) + Integer.parseInt(attributes.get(7)) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			case "car":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + carID +  " "
 						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
 						+ Integer.parseInt(attributes.get(0)) + ", "
 						+ Integer.parseInt(attributes.get(1)) + ", " + attributes.get(2) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			case "office":
-				stmt = connection_.createStatement();
+				// stmt = connection_.createStatement();
 				query = "insert into " + tableName + " (" + officeID +  " "
 						+ officeName + " " + officeManagerID + " " + officePhoneNum + " "
 						+ officeAddress + " " + officeCity + ", " + officeState + ") " + " values" + " ("
@@ -205,7 +205,7 @@ public class DatabaseControllerRedux {
 						+ attributes.get(1) + ", " + Integer.parseInt(attributes.get(2)) + ", "
 						+ Integer.parseInt(attributes.get(3)) + ", " + attributes.get(4) + ", " + attributes.get(5) 
 						+ ", " + attributes.get(6) + ")";
-				answer = stmt.executeQuery(query);
+				answer = statement_.executeQuery(query);
 				break;
 			}
 		} catch (SQLException e) {
