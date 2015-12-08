@@ -136,10 +136,16 @@ public class DatabaseControllerRedux {
 			switch (tableName) {
 			case "test":
 				// stmt = connection_.createStatement();
+				// query = "insert into " + tableName + " (" + testClientID + " "
+				// 		+ testType + " " + testPassed + " " + testReason + " "
+				// 		+ testDate + ") " + " values" + " ("
+				// 		+ Integer.parseInt(attributes.get(0)) + ", "
+				// 		+ attributes.get(1) + ", " + attributes.get(2) + ", "
+				// 		+ attributes.get(3) + ", " + attributes.get(4) + ")";
 				query = "insert into " + tableName + " (" + testClientID + " "
 						+ testType + " " + testPassed + " " + testReason + " "
 						+ testDate + ") " + " values" + " ("
-						+ Integer.parseInt(attributes.get(0)) + ", "
+						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
 						+ attributes.get(3) + ", " + attributes.get(4) + ")";
 				answer = statement_.executeQuery(query);
@@ -208,6 +214,7 @@ public class DatabaseControllerRedux {
 				answer = statement_.executeQuery(query);
 				break;
 			}
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Unable to insert into database!");
