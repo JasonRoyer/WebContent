@@ -200,8 +200,7 @@ public class DatabaseControllerRedux {
 				// 		+ Integer.parseInt(attributes.get(0)) + ", "
 				// 		+ Integer.parseInt(attributes.get(1)) + ", " + attributes.get(2) + ", "
 				// 		+ Integer.parseInt(attributes.get(3)) + ")";
-				query = "insert into " + tableName + " (" + carID +  " "
-						+ carMileage + " " + carFaults + " " + carEmpID + " values" + " ("
+				query = "insert into " + tableName + " values" + " ("
 						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
 						+ attributes.get(3) + ")";
@@ -223,7 +222,8 @@ public class DatabaseControllerRedux {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Unable to insert into database!");
-			System.exit(-1);
+			// System.exit(-1);
+			return false;	
 		}
 		return false;
 	} //insert
