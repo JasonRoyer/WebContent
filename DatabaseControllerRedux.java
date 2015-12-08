@@ -138,7 +138,7 @@ public class DatabaseControllerRedux {
 				query = "insert into " + tableName + " values" + " ("
 						+ attributes.get(0) + ", '"
 						+ attributes.get(1) + "', '" + attributes.get(2) + "', '"
-						+ attributes.get(3) + "', " + "TO_DATE('" + attributes.get(4) + "','mm/dd/yy hh24:mi:00'))";
+						+ attributes.get(3) + "', " + "TO_DATE('" + attributes.get(4) + "','mm/dd/yyyy hh24:mi:00'))";
 				answer = statement_.executeQuery(query);
 				break;
 			case "client":
@@ -153,7 +153,7 @@ public class DatabaseControllerRedux {
 				query = "insert into " + tableName + " values" + " ("
 						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", TO_DATE('"
-						+ attributes.get(3) + "','mm/dd/yy'), '" + attributes.get(4) + "')";
+						+ attributes.get(3) + "','mm/dd/yyyy'), '" + attributes.get(4) + "')";
 				answer = statement_.executeQuery(query);
 				break;
 			case "lesson":
@@ -161,14 +161,14 @@ public class DatabaseControllerRedux {
 						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
 						+ attributes.get(3) + ", " + attributes.get(4) + ", " + attributes.get(5) 
-						+ ", TO_DATE('" + attributes.get(6) + "','mm/dd/yy hh24:mi:00'))";
+						+ ", TO_DATE('" + attributes.get(6) + "','mm/dd/yyyy hh24:mi:00'))";
 				answer = statement_.executeQuery(query);
 				break;
 			case "employee":
 				query = "insert into " + tableName + " values" + " ("
 						+ attributes.get(0) + ", '"
 						+ attributes.get(1) + "', " + attributes.get(2) + ", "
-						+ "TO_DATE('" + attributes.get(3) + "','mm/dd/yy'), '" + attributes.get(4) + "', '" + attributes.get(5) 
+						+ "TO_DATE('" + attributes.get(3) + "','mm/dd/yyyy'), '" + attributes.get(4) + "', '" + attributes.get(5) 
 						+ "', " + attributes.get(6) + attributes.get(7) + ")";
 				answer = statement_.executeQuery(query);
 				break;
