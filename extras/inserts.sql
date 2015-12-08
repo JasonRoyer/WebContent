@@ -5,14 +5,14 @@ select officeName, (select count(*) from employee where employee.officeID=office
 select avg(milesDriven) as "Miles Driven" from lesson;
 
 
-INSERT INTO car values (3333, 55, 'n', 9876);
-INSERT INTO car values (3332, 431, 'y', 9877);
-INSERT INTO car values (3331, 23423, 'n', 9875);
-INSERT INTO car values (3330, 211, 'n', 9879);
-INSERT INTO car values (3334, 91879, 'n', 91879);
-INSERT INTO car values (3335, 191879, 'y', 191879);
-INSERT INTO car values (3336, 200002, 'y', 200002);
-INSERT INTO car values (3337, 2302, 'y', 2302);
+INSERT INTO car values (3333, 55, 'n', 6651);
+INSERT INTO car values (3332, 431, 'y', 6652);
+INSERT INTO car values (3331, 23423, 'n', 6653);
+INSERT INTO car values (3330, 211, 'n', 6654);
+INSERT INTO car values (3334, 91879, 'n', 6662);
+INSERT INTO car values (3335, 191879, 'y', 6669);
+INSERT INTO car values (3336, 200002, 'y', 6663);
+INSERT INTO car values (3337, 2302, 'y', 6664);
 
 
 
@@ -51,6 +51,8 @@ INSERT INTO lesson values (1111, 3333, 5555, 6651, 10, TO_DATE('11/15/15 09:30:0
 INSERT INTO lesson values (1112, 3332, 5551, 6652, 15, TO_DATE('11/25/15 10:30:00','mm/dd/yy hh24:mi:ss'), 15);
 INSERT INTO lesson values (1113, 3331, 5550, 6653, 20, TO_DATE('09/05/15 09:00:00','mm/dd/yy hh24:mi:ss'), 10);
 INSERT INTO lesson values (1114, 3330, 5553, 6654, 10, TO_DATE('11/30/15 09:30:00','mm/dd/yy hh24:mi:ss'), 5);
+
+delete from test where clientID=10000 and testType='drive' and TO_DATE('11/30/2016 12:30:00','mm/dd/yyyy hh24:mi:ss')=testDate;
 
 'mm-dd-yyyy HH24:mi:ss'
 

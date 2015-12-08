@@ -1,0 +1,35 @@
+The relations and their attributes are as follows: 
+
+test - clientID (PK), testType (PK), passed, reason, testDate(PK);
+client - clientID(PK/FK), name, gender, address, city, phoneNum, validLicense;
+interview - clientID(PK/FK), empID, interviewDate, needs;
+lesson - lessonNum(PK), carID(FK), clientID(FK), empID(FK), fee, lessonDate, milesDriven;
+employee - empID(PK), name, DOB, phoneNum, gender, jobTitle, carID(FK), officeID(FK);
+car - carID(PK), mileage, faults, empID(FK);
+office - officeID(PK), officeName, managerID(FK), phoneNum, address, city, state
+
+The test relation is in 3rd normal form in that the "passed" and "reason" attributes rely on the clientID-testType-testDate composite superkey; 
+that is, "passed" and "reason" are functionally determined by the composite primary key of clientID-testType-testDate, and no transitive
+dependencies exist.
+
+The client relation is in 3rd normal form in that the name, gender, address, city, phoneNum, and validLicense attributes are functionally
+determined by the clientID. The personal details of the client can only be dependent on the ID that uniquely identifies the individual, and
+no transitive dependencies exist.
+
+The interview relation is 3rd normal form because the empID, interviewDate, and needs attributes are functionally determined by
+the clientID; that is, an employee is assigned to interview a client, so this is determined directly by the client, as are the needs
+of the client and the date of the interview, and no transitive dependencies exist.
+
+The lesson relation is in 3rd normal form because the carID, clientID, empID, fee, lessonDate, and milesDriven attribute are directly tied to
+the lesson itself; that is, the car, employee, client, fee, date, and miles driven in a car are functionally determined by the lesson itself, which
+is uniquely identified by an ID, which is the primary key of the relation. No transitive dependencies exist.
+
+The employee relation is in 3rd normal form because the name, DOB, phoneNum, gender, jobTitle, carID, and officeID are tied to empID primary key.
+That is, the attributes correspond to the attributes of the employee, so the ID that uniquely identifies said employee determines these characteristics, and no
+transitive dependencies exist.
+
+The car relation is in 3rd normal form because the mileage, faults, and empID are determined by the carID primary key, and cannot be functionally determined
+from one another, and no transitive dependencies exist.
+
+The office relation is in 3rd normal form because the officeName, managerID, phoneNum, address, city, and state are all functionally determined by the officeID 
+primary key; that is, these attributes can only be determined by a uniquely identified office, and not by each other, and no transitive dependencies exist.

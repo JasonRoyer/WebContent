@@ -1,0 +1,11 @@
+Description of functionalities:
+
+Insert - insert works as it should, you input the data in the appropriate fields and hit insert. If it fails then the data you enters was not compatible, see ReadMe.txt
+Delete - delete works as it should, all you need to provide is the primary key, which is shown on the web interface. Then hit delete if it fails, then the primary key you gave does not exist.
+Update - update works best on Car, you give the primary key(registration) of the car you want to update, then update the rest of the field to your heart's desire. All fields must be filled, if it fails either primary key does not exist or data entered was incompatible.
+Queries - queries run as and act as described in the web interface. What you see is what you get.
+	What are the CarIDs of the cars without faults?
+	What are the names and number of the managers?
+	What are the postal addresses of all office in Tucson?
+	How many employees work at each office?
+	What is the average miles driven during lessons?
