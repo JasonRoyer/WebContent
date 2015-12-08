@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<%@page import="java.util.*" %>
+<%@page import="java.util.*,dbController.*" %>
 <html>
 <head>
 	<title>Update Results</title>
@@ -46,18 +46,20 @@ for(String str: tempArray){
 	values.add(request.getParameter(str));
 }
 
-//DatabaseController dbcontroller = new DatabaseController();
+DatabaseControllerRedux dbcontroller = new DatabaseControllerRedux();
 
-//dbcontroller.openConnection();
+dbcontroller.Open();
 
-//if(dbcontroller.update(table,values)){
-//	out.write("Update Successful");
-//}else {
-//	out.write("Update Failed");
-//}
+if(dbcontroller.update(table,values)){
+	out.write("update Successful");
+}else {
+	out.write("update Failed");
+}
 
 
-//dbcontroller.closeConnection();
+dbcontroller.Close();
+
+
 
 
 

@@ -52,13 +52,12 @@ for(String str: tempArray){
 DatabaseControllerRedux dbcontroller = new DatabaseControllerRedux();
 
 dbcontroller.Open();
-out.write("table: " + table + " values: " + values.toString());
-/* if(dbcontroller.insert(table,values)){
+if(dbcontroller.insert(table,values)){
 	out.write("insert Successful");
 }else {
 	out.write("insert Failed");
 }
- */
+ 
 
 dbcontroller.Close();
 
