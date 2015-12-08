@@ -303,7 +303,7 @@ public class DatabaseControllerRedux {
  			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
  			while(rs.next()) {
  				ArrayList<String> tuple = new ArrayList<String>();
- 				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
+ 				
  				switch(tablename) {
  					case "test":
  						tuple.add(rs.getString("clientID"));

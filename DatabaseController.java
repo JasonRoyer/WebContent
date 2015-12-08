@@ -276,9 +276,12 @@ public class DatabaseController {
  		try {
  			ResultSet rs = stmt.executeQuery(query);
  			List<ArrayList> tupleList = new ArrayList<ArrayList>();
+ 			// TODO create a method to get the column names of each table, add it to the arraylist
+ 			List<String> tuple = new ArrayList<String>();
+ 			tuple.add("dummy info");
+ 			tupleList.add(tuple);
  			while(rs.next()) {
-
- 				List<String> tuple = new ArrayList<String>();
+ 				tuple = new ArrayList<String>();
  				// @TODO here will be the list of ifs or cases which ever bull shit i go with tomorrow
  				switch(tablename) {
  					case "test":
@@ -349,5 +352,9 @@ public class DatabaseController {
  		}
  		return null;
  	} // end findAll
+
+ 	public ArrayList<ArrayList<String>> query(int queryNum) {
+ 		// TODO this
+ 	} // query()
 
 } // end DatabaseController
