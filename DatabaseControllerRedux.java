@@ -147,7 +147,7 @@ public class DatabaseControllerRedux {
 						+ testDate + ") " + " values" + " ("
 						+ attributes.get(0) + ", "
 						+ attributes.get(1) + ", " + attributes.get(2) + ", "
-						+ attributes.get(3) + ", " + "TO_DATE('" + attributes.get(4) + "'mm/dd/yy hh24:mi:00'))";
+						+ attributes.get(3) + ", " + "TO_DATE('" + attributes.get(4) + ",'mm/dd/yy hh24:mi:00'))";
 				answer = statement_.executeQuery(query);
 				break;
 			case "client":
