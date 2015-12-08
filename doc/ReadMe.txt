@@ -1,6 +1,7 @@
 NOTE - for fields that contain dates, this is the correct format: mm/dd/yyyy hh:mi:ss, where hour is in military time.
 For DOB attribute in the employee relation and interviewDate attribute in the interview relation, the time is NOT required.
 The phone number attribute in all appropriate relations must be a ten digit number with no special characters.
+In the test relation, if a client passes the test, the value of the "reason" attribute must be "none".
 
 INSERT
 
