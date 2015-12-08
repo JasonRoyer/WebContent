@@ -202,7 +202,7 @@ public class DatabaseControllerRedux {
 				// 		+ Integer.parseInt(attributes.get(3)) + ")";
 				query = "insert into " + tableName + " values" + " ("
 						+ attributes.get(0) + ", "
-						+ attributes.get(1) + ", " + attributes.get(2) + ", "
+						+ attributes.get(1) + ", '" + attributes.get(2) + "', "
 						+ attributes.get(3) + ")";
 				answer = statement_.executeQuery(query);
 				break;
@@ -223,7 +223,6 @@ public class DatabaseControllerRedux {
 			e.printStackTrace();
 			System.err.println("Unable to insert into database!");
 			// System.exit(-1);
-			return false;	
 		}
 		return false;
 	} //insert

@@ -68,7 +68,7 @@ dbcontroller.Close();
 
 
 %>
-
+<a href="index.html">Home</a>
 
 </body>
 

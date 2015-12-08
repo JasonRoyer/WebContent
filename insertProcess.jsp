@@ -57,7 +57,7 @@ if(dbcontroller.insert(table,values)){
 }else {
 	out.write("insert Failed");
 }
- 
+
 
 dbcontroller.Close();
 
@@ -68,7 +68,7 @@ dbcontroller.Close();
 
 
 %>
-
+<a href="index.html">Home</a>
 
 </body>
 
