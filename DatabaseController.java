@@ -354,7 +354,50 @@ public class DatabaseController {
  	} // end findAll
 
  	public ArrayList<ArrayList<String>> query(int queryNum) {
- 		// TODO this
+ 		// all the queries possible to be ran
+ 		String query1 = "select carID from car where carID not in (Select carID from car where faults='y')";
+ 		String query2 = "select distinct employee.name, employee.phoneNum from office, employee where jobTitle='Manager'";
+ 		String query3 = "select address, city, state from office where city='Tucson'";
+ 		String query4 = "select officeName, (select count(*) from employee where employee.officeID=office.officeID) as NumEmps from office";
+ 		String query5 = "select avg(milesDriven) as \"Miles Driven\" from lesson";
+ 		
+ 		String runQuery = "";
+ 		switch (queryNum) {
+ 			case 1:
+ 				runQuery = query1;
+ 				break;
+ 			case 2:
+ 				runQuery = query2;
+ 				break;
+ 			case 3:
+ 				runQuery = query3;
+ 				break;
+ 			case 4:
+ 				runQuery = query4;
+ 				break;
+ 			case 5:
+ 				runQuery = query5;
+ 				break;
+ 			default:	
+ 				runQuery = query1;
+ 				break;	
+ 		}
+
+ 		try {
+ 			List<ArrayList> tupleList = new ArrayList<ArrayList>();
+ 			// TODO create a method to get the column names of each table, add it to the arraylist
+ 			List<String> tuple = new ArrayList<String>();
+ 			ResultSet rs = statment_.executeQuery(runQuery);
+ 			addColumnNames
+ 			while(rs.next) {
+
+ 			} // while
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		}
+
+
+
  	} // query()
 
 } // end DatabaseController

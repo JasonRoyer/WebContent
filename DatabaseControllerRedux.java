@@ -89,8 +89,8 @@ public class DatabaseControllerRedux {
 
   	public DatabaseControllerRedux() {
   		// username and password
-  		username = "bidunbar";
-  		password = "a9730";
+  		username = "jnaranjo1";
+  		password = "a5650";
   		connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
   	} // DatabaseController
 
