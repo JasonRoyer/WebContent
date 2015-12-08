@@ -105,9 +105,7 @@
 
 		
 		ArrayList<ArrayList<String>> relation =  dbcontroller.findAll(table);
-		out.write(relation.get(0).get(0));
-	/**
-		if (relation == null){
+
 		StringBuffer content = new StringBuffer();
 		
 		content.append("<table border=\"1\" align=\"center\">");
@@ -116,14 +114,13 @@
 			content.append("<tr>");
 			for (int j =0; j < relation.get(i).size(); j++){
 					// each attribute
-				content.append("<td>" + relation.get(i).get(j) + table+ "</td>");
+				content.append("<td>" + relation.get(i).get(j) + "</td>");
 			}
 			content.append("</tr>");
 		}
 		content.append("</table>");
-		}
+		
 		out.write(content.toString());
-		*/
 		dbcontroller.Close();
 		
 		
