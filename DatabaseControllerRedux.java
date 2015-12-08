@@ -395,10 +395,7 @@ public class DatabaseControllerRedux {
  				tupleList.add(addColumnNames("query5"));
  				runQuery = query5;
  				break;
- 			default:
- 				tupleList.add(addColumnNames("query1"));	
- 				runQuery = query1;
- 				break;	
+ 		
  		}
 
  		try {
@@ -406,6 +403,7 @@ public class DatabaseControllerRedux {
  			ResultSet rs = statement_.executeQuery(runQuery);
  			
  			while(rs.next()) {
+ 				tuple = new ArrayList<String>();
  				switch (queryNum) {
  					case 1:
  						tuple.add(rs.getString("carID"));
@@ -426,9 +424,7 @@ public class DatabaseControllerRedux {
  					case 5:
  						tuple.add(rs.getString("Miles Driven"));
  						break;
- 					default:
- 						tuple.add(rs.getString("carID"));
- 						break;
+ 					
  				}
  				tupleList.add(tuple);
  			} // while
@@ -517,9 +513,6 @@ public class DatabaseControllerRedux {
  				break;
  			case "query5":
  				columnNames.add("Miles Driven");
- 				break;
- 			default:
- 				System.err.println("Shouldn't be here");
  				break;
  		} // switch
  		return columnNames;
