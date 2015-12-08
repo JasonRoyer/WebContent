@@ -298,7 +298,7 @@ public class DatabaseControllerRedux {
 
  	
  	public ArrayList<ArrayList<String>> findAll(String tablename) {
- 		String query = "SELECT * FROM bidunbar." + tablename;
+ 		String query = "SELECT * FROM jnaranjo1." + tablename;
  		try {
  			ResultSet rs = statement_.executeQuery(query);
  			ArrayList<ArrayList<String>> tupleList = new ArrayList<ArrayList<String>>();
