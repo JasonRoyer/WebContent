@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<%@page import="java.util.*" %>
+<%@page import="java.util.*, dbController.*" %>
 <html>
 <head>
 	<title>Delete Results</title>
@@ -43,18 +43,18 @@ for(String str: tempArray){
 	values.add(request.getParameter(str));
 }
 
-//DatabaseController dbcontroller = new DatabaseController();
+DatabaseControllerRedux dbcontroller = new DatabaseControllerRedux();
 
-//dbcontroller.openConnection();
+dbcontroller.Open();
 
-//if(dbcontroller.delete(table,values)){
-//	out.write("delete Successful");
-//}else {
-//	out.write("delete Failed");
-//}
+if(dbcontroller.delete(table,(String[]) values.toArray())){
+	out.write("delete Successful");
+}else {
+	out.write("delete Failed");
+}
 
 
-//dbcontroller.closeConnection();
+dbcontroller.Close();
 
 
 
