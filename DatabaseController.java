@@ -396,8 +396,83 @@ public class DatabaseController {
  			e.printStackTrace();
  		}
 
-
-
  	} // query()
+
+ 	// This method adds the column names of the table passed in and returns them as an AL of Strings
+ 	public Arraylist<String> addColumnNames(String tablename) {
+ 		ArrayList<String> columnNames = new Arraylist<String>();
+ 		switch(tablename) {
+ 			case "test":
+ 				columnNames.add("Client ID");
+ 				columnNames.add("Test Type");
+ 				columnNames.add("Passed?");
+ 				columnNames.add("Reason for Fail");
+ 				columnNames.add("Test Date");
+ 				break;
+ 			case "client":
+ 				columnNames.add("Client ID");
+ 				columnNames.add("Name");
+ 				columnNames.add("Gender");
+ 				columnNames.add("Address");
+ 				columnNames.add("City");
+ 				columnNames.add("Phone #");
+ 				columnNames.add("Valid License");
+ 				break;
+ 			case "interview":
+ 				columnNames.add("Client ID");
+ 				columnNames.add("Emp ID");
+ 				columnNames.add("Interview Date");
+ 				columnNames.add("Needs");
+ 				break;
+ 			case "lesson":
+ 				columnNames.add("Lesson #");
+ 				columnNames.add("Car ID");
+ 				columnNames.add("Client ID");
+ 				columnNames.add("Emp ID");
+ 				columnNames.add("Fee");
+ 				columnNames.add("Lesson Date");
+ 				columnNames.add("Miles Driven");
+ 				break;
+ 			case "employee":
+ 				columnNames.add("Emp ID");
+ 				columnNames.add("Name");
+ 				columnNames.add("DOB");
+ 				columnNames.add("Phone #");
+ 				columnNames.add("Gender");
+ 				columnNames.add("Job Title");
+ 				columnNames.add("Car ID");
+ 				columnNames.add("Office ID");
+ 				break;
+ 			case "car":
+ 				columnNames.add("Registration");
+ 				columnNames.add("Mileage");
+ 				columnNames.add("Faults");
+ 				columnNames.add("Emp ID");
+ 				break;
+ 			case "office":
+ 				columnNames.add("Office ID");
+ 				columnNames.add("Office Name");
+ 				columnNames.add("Manager ID");
+ 				columnNames.add("Phone #");
+ 				columnNames.add("Address");
+ 				columnNames.add("City");
+ 				columnNames.add("State");
+ 				break;
+ 			case "query1":
+ 				break;
+ 			case "query2":
+ 				break;
+ 			case "query3":
+ 				break;
+ 			case "query4":
+ 				break;
+ 			case "query5":
+ 				break;
+ 			default:
+ 				System.err.println("Shouldn't be here");
+ 				break;
+ 		} // switch
+ 		return columnNames;
+ 	}
 
 } // end DatabaseController
