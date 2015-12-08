@@ -29,6 +29,7 @@
 		On Table: 
 		<select name="insertTableSelect" id="selecttableID" onChange="tableSelect()">
 		
+		<option value="table" selected disabled>Pick a Table</option>
 		<option value="Office">Office</option>
 		<option value="Employee">Employee</option>
 		<option value="Client">Client</option>
@@ -65,6 +66,8 @@
 				case "Test":
 					form = createTableSelected("ClientID_Test","TestType","Passed","Reason","TestDate");
 					break;	
+					default:
+						form = "";
 			
 			};
 			

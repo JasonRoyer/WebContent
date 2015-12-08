@@ -26,6 +26,7 @@
 		On Table: 
 		<select name="insertTableSelect" onchange="this.form.submit()">
 		
+		<option value="table" selected disabled>Pick a Table</option>
 		<option value="Office">Office</option>
 		<option value="Employee">Employee</option>
 		<option value="Client">Client</option>
